@@ -147,7 +147,10 @@ function setupMatchSearch() {
   });
 }
 
-// ── Landing intro: "What Is." flips into "What If?" ───
+// ── Landing intro: THE TOSS THAT NEVER LANDS ──────────
+// Floodlights → coin rises spinning → freezes edge-on →
+// splits into IS (falls away, fades) and IF (curves down,
+// lands center) → impact → the universe arrives.
 function runIntro() {
   const h = location.hash;
   if (h && h !== '#' && h !== '#/') return;                       // deep links skip straight to content
@@ -155,21 +158,38 @@ function runIntro() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   try { sessionStorage.setItem('introSeen', '1'); } catch (_) {}
 
+  const ov = document.getElementById('toss-overlay');
+  if (!ov) return;
+  const caption = document.getElementById('toss-caption');
+
   document.body.classList.add('intro');
-  const ifSpan = document.querySelector('.hero-title span');
-  if (ifSpan) {
-    ifSpan.textContent = 'Is.';
-    ifSpan.classList.add('is-real');
-    setTimeout(() => {
-      ifSpan.classList.add('flipping');
-      setTimeout(() => {
-        ifSpan.textContent = 'If?';
-        ifSpan.classList.remove('is-real');
-      }, 190); // swap while edge-on, like a verdict overturning
-      setTimeout(() => ifSpan.classList.remove('flipping'), 420);
-    }, 1250);
-  }
-  setTimeout(() => document.body.classList.remove('intro'), 3000);
+  ov.classList.add('play');
+
+  const timers = [];
+  const t = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+  t(() => {                                    // Beat 3: the freeze
+    ov.classList.add('phase-freeze');
+    if (caption) {
+      caption.textContent = 'IN ANOTHER UNIVERSE, IT LANDS THE OTHER WAY';
+      caption.classList.add('gold');
+    }
+  }, 2650);
+  t(() => ov.classList.add('phase-split'), 3350);   // Beat 4: two universes part
+  t(() => ov.classList.add('phase-land'), 4150);    // Beat 5: impact
+  t(() => ov.classList.add('fade'), 4600);
+  t(() => {
+    ov.classList.remove('play', 'phase-freeze', 'phase-split', 'phase-land', 'fade');
+    ov.style.display = 'none';
+  }, 5200);
+  t(() => document.body.classList.remove('intro'), 6300);
+
+  ov.addEventListener('click', () => {              // tap to skip — no waiting twice
+    timers.forEach(clearTimeout);
+    ov.classList.remove('play', 'phase-freeze', 'phase-split', 'phase-land', 'fade');
+    ov.style.display = 'none';
+    document.body.classList.remove('intro');
+  }, { once: true });
 }
 
 // ── Ghost headlines: other universes leaking into the hero flanks ──
