@@ -1313,97 +1313,132 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
 }
 .universe-overlay.show { display: flex; opacity: 1; }
 
-.uni-wrap { text-align: center; padding: 2rem; }
-
-.uni-line-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 1.15rem;
-  color: var(--text);
-  min-height: 1.6em;
-  margin-bottom: 1.6rem;
-}
-
-.uni-anim {
+/* the stadium big screen */
+.jumbo {
   position: relative;
-  width: min(320px, 72vw);
-  height: 100px;
-  margin: 0 auto;
+  width: min(430px, 90vw);
+  border: 2px solid rgba(245,200,66,0.3);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #07070c, #0b0b14);
+  box-shadow: 0 0 60px rgba(0,0,0,0.8), 0 0 24px rgba(245,200,66,0.08), inset 0 0 40px rgba(0,0,0,0.6);
+  padding: 1.4rem 1.4rem 1.7rem;
+  text-align: center;
+  overflow: hidden;
 }
-
-/* incoming timeline: left edge to center */
-.uni-track {
+.jumbo-scan {
   position: absolute;
-  left: 0; top: 50%;
-  width: 50%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold));
-  box-shadow: 0 0 12px rgba(245,200,66,0.4);
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px);
+  pointer-events: none;
 }
-
-/* the fork: two diverging futures */
-.uni-fork {
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 50%; height: 2px;
-  transform-origin: left center;
-  transform: scaleX(0);
-}
-.uni-fork.up   { background: var(--gold);              rotate: -16deg; box-shadow: 0 0 12px rgba(245,200,66,0.5); }
-.uni-fork.down { background: rgba(112,112,160,0.55);   rotate: 16deg; }
-.universe-overlay.show .uni-fork.up   { animation: uniFork 0.5s ease-out 0.55s forwards; }
-.universe-overlay.show .uni-fork.down { animation: uniFork 0.5s ease-out 0.55s forwards; }
-@keyframes uniFork { to { transform: scaleX(1); } }
-
-/* the cherry */
-.uni-ball {
-  position: absolute;
-  left: 0; top: 50%;
-  width: 20px; height: 20px;
-  margin-top: -10px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #ff7a6b, #c62828 55%, #7f1d1d);
-  box-shadow: 0 0 14px rgba(198,40,40,0.6);
-  opacity: 0;
-}
-.uni-ball::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  border: 1px dashed rgba(255,255,255,0.5);
-  transform: rotate(24deg);
-}
-.universe-overlay.show .uni-ball { animation: uniBall 1.35s cubic-bezier(0.4, 0, 0.6, 1) 0.1s forwards; }
-@keyframes uniBall {
-  0%   { opacity: 0; left: 0;              transform: translateY(0)     rotate(0deg); }
-  10%  { opacity: 1; }
-  48%  { left: calc(50% - 10px);           transform: translateY(0)     rotate(360deg); }
-  100% { opacity: 1; left: calc(100% - 20px); transform: translateY(-46px) rotate(720deg); }
-}
-
-/* the butterfly guarding the fork */
-.uni-butterfly {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -130%);
-  font-size: 1.3rem;
-  filter: drop-shadow(0 0 10px rgba(245,200,66,0.5));
-  opacity: 0;
-}
-.universe-overlay.show .uni-butterfly { animation: uniFlutter 1.1s ease-in-out 0.45s forwards; }
-@keyframes uniFlutter {
-  0%   { opacity: 0; transform: translate(-50%, -60%)  scale(0.6); }
-  40%  { opacity: 1; transform: translate(-50%, -150%) scale(1.15); }
-  70%  {             transform: translate(-50%, -120%) scale(0.95); }
-  100% { opacity: 1; transform: translate(-50%, -140%) scale(1); }
-}
-
-.uni-sub {
+.jumbo-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   letter-spacing: 0.22em;
   color: var(--muted);
-  margin-top: 1.6rem;
+}
+.rec-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #e74c3c;
+  animation: livePulse 1s ease-in-out infinite;
+}
+.jumbo-flavor {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--text);
+  min-height: 1.5em;
+  margin: 1rem 0 1.1rem;
+}
+
+/* UltraEdge waveform */
+.ue-wave {
+  position: relative;
+  height: 54px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+}
+.ue-bar {
+  width: 4px;
+  background: rgba(154,160,200,0.55);
+  border-radius: 1px 1px 0 0;
+  transform-origin: bottom;
+}
+.ue-bar.spike { background: #2ecc71; box-shadow: 0 0 8px rgba(46,204,113,0.6); }
+.universe-overlay.show .ue-bar.spike { animation: ueSpike 0.22s ease-out var(--d, 0.8s) forwards; }
+@keyframes ueSpike { to { transform: scaleY(5); } }
+.ue-cursor {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 2%;
+  width: 2px;
+  background: #e74c3c;
+  box-shadow: 0 0 10px rgba(231,76,60,0.8);
+  opacity: 0;
+}
+.universe-overlay.show .ue-cursor { animation: ueSweep 1.15s linear 0.15s forwards; }
+@keyframes ueSweep {
+  0%   { opacity: 1; left: 2%; }
+  100% { opacity: 1; left: 98%; }
+}
+
+/* DECISION PENDING — the blink every fan fears */
+.jumbo-pending {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(245,200,66,0.5);
+  animation: pendingBlink 0.55s step-end infinite;
+}
+@keyframes pendingBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+/* the verdict */
+.jumbo-verdict { display: none; padding: 0.1rem 0 0.2rem; }
+.universe-overlay.verdict .jumbo-pending { display: none; }
+.universe-overlay.verdict .jumbo-verdict { display: block; }
+.universe-overlay.verdict .jumbo { animation: jumboShake 0.28s ease-out 0.12s; }
+@keyframes jumboShake {
+  25% { transform: translate(3px, -2px); }
+  50% { transform: translate(-3px, 2px); }
+  75% { transform: translate(2px, 1px); }
+}
+.jv-original {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.jv-stamp {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.65rem;
+  letter-spacing: 0.14em;
+  color: #2ecc71;
+  border: 3px solid #2ecc71;
+  border-radius: 8px;
+  padding: 0.32rem 1.1rem;
+  text-shadow: 0 0 20px rgba(46,204,113,0.6);
+  box-shadow: 0 0 30px rgba(46,204,113,0.3), inset 0 0 18px rgba(46,204,113,0.08);
+  opacity: 0;
+  transform: scale(2.6) rotate(-6deg);
+}
+.universe-overlay.verdict .jv-stamp { animation: stampIn 0.28s cubic-bezier(0.2, 1.6, 0.4, 1) 0.05s forwards; }
+@keyframes stampIn {
+  to { opacity: 1; transform: scale(1) rotate(-6deg); }
 }
 
 /* ══════════════════════════════════════════

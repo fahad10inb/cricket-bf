@@ -264,26 +264,51 @@ async function generateCustomStory() {
   showScreen('screen-twist');
 }
 
-// ── Universe crossing transition ──────────────────────
+// ── Timeline review transition (3rd umpire reviews reality) ──
 const UNI_LINES = [
-  'The bowler turns at the top of his mark...',
+  'UltraEdge detects a disturbance in the timeline...',
+  'Snicko picks up a whisper from another world...',
+  'Ball-tracking shows history clipping the stumps...',
+  'The big screen flickers. Ninety thousand hold their breath...',
+  'Checking the front foot... of fate itself...',
+  "Umpire's call — but not the universe's...",
   'Rewinding the tape to the exact delivery...',
-  'The butterfly lands on a good length...',
-  'Third umpire is checking the multiverse...',
-  'One ball. Two universes.',
-  'Crossing the boundary between timelines...',
-  'The crowd holds its breath — again...',
-  'Somewhere, a scorer picks up a different pen...'
+  'The scorer picks up a different pen...'
 ];
+
+let ueWaveBuilt = false;
+function buildUeWave() {
+  const w = document.getElementById('ue-wave');
+  if (!w || ueWaveBuilt) return;
+  ueWaveBuilt = true;
+  for (let i = 0; i < 42; i++) {
+    const b = document.createElement('div');
+    b.className = 'ue-bar';
+    b.style.height = (3 + Math.random() * 8) + 'px';
+    // the edge: bars near the cursor's mid-sweep spike green
+    if (i >= 19 && i <= 22) {
+      b.classList.add('spike');
+      b.style.setProperty('--d', (0.68 + (i - 19) * 0.045) + 's');
+    }
+    w.appendChild(b);
+  }
+}
 
 function universeTransition() {
   return new Promise(resolve => {
     const ov = document.getElementById('universe-overlay');
     if (!ov) return resolve();
+    buildUeWave();
     document.getElementById('uni-line').textContent =
       UNI_LINES[Math.floor(Math.random() * UNI_LINES.length)];
+    ov.classList.remove('verdict');
     ov.classList.add('show');
-    setTimeout(() => { ov.classList.remove('show'); resolve(); }, 1600);
+    setTimeout(() => ov.classList.add('verdict'), 1450);      // stamp: OVERTURNED
+    setTimeout(() => {
+      ov.classList.remove('show');
+      setTimeout(() => ov.classList.remove('verdict'), 300);   // reset after fade
+      resolve();
+    }, 2400);
   });
 }
 
