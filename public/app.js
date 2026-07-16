@@ -107,7 +107,6 @@ function buildMatchGrid() {
     card.addEventListener('click', () => { location.hash = '#/match/' + match.id; });
     grid.appendChild(card);
   });
-  updateMatchCount();
 }
 
 // ── Community timelines (featured shared stories) ─────
@@ -135,13 +134,6 @@ async function loadCommunityStrip() {
 }
 
 // ── Match search filter ───────────────────────────────
-function updateMatchCount() {
-  const total   = document.querySelectorAll('.match-card').length;
-  const visible = document.querySelectorAll('.match-card:not(.filtered-out)').length;
-  const el = document.getElementById('match-count');
-  if (el) el.textContent = visible === total ? `${total} matches` : `${visible} / ${total} matches`;
-}
-
 function setupMatchSearch() {
   const input = document.getElementById('match-search');
   if (!input) return;
@@ -152,7 +144,6 @@ function setupMatchSearch() {
     });
     // Era headers only make sense in the unfiltered view
     document.querySelectorAll('.match-era-header').forEach(h => h.classList.toggle('filtered-out', q !== ''));
-    updateMatchCount();
   });
 }
 

@@ -21,7 +21,7 @@ Every cricket fan has one moment they can't let go of. Mine has always been Head
 
 So I built a thing: pick one legendary moment, flip it, and it shows you the alternate timeline — the live commentary call the moment history forks, the rewritten scoreboard, how the record books change (SA World Cups: 0 → 1, "chokers" tag: never coined), fan reactions from the universe that never happened, and a full story of the aftermath.
 
-There are 38 legendary matches in there (Bodyline 1933 → Barbados 2024, including the 2019 final, the 438 game, the Gabba, Miandad's six), or you can create your own what-if and AI writes the timeline. There's also a Great Debates section where you can vote on the arguments we all have anyway (would Bradman average 99 today?).
+The library runs from Bodyline 1933 to today — the 2019 final, the 438 game, the Gabba, Miandad's six, IPL classics, or you can create your own what-if and AI writes the timeline. There's also a Great Debates section where you can vote on the arguments we all have anyway (would Bradman average 99 today?).
 
 It's free, no signup, built for fun: https://cricket-bf.vercel.app
 
@@ -39,7 +39,7 @@ I kept having these arguments with friends, so I built an app that settles them 
 
 🦋 Cricket Butterfly Effect: pick one legendary moment in cricket history, change it, and watch the timeline unravel — the live commentary at the exact second history forks, the rewritten record books, fan reactions from the universe that never happened, and the full alternate story.
 
-38 legendary matches from Bodyline 1933 to Barbados 2024. Or create your own what-if and AI writes it in seconds.
+A library of legendary matches from Bodyline 1933 to today — internationals and IPL classics. Or create your own what-if and AI writes it in seconds.
 
 A few things I learned building it:
 → Free-tier AI is genuinely production-ready if you design for failure — the app chains three providers (Cerebras → Groq → Gemini) and falls back automatically
@@ -64,7 +64,7 @@ Caption:
 
 In another universe, Herschelle Gibbs holds that catch. South Africa are world champions. The word "chokers" never enters cricket. 🦋
 
-I built a simulator that rewrites cricket history — one moment at a time. 38 legendary matches. Or create your own what-if and AI writes the timeline.
+I built a simulator that rewrites cricket history — one moment at a time. Every legendary match you have ever argued about. Or create your own what-if and AI writes the timeline.
 
 Link in bio. Which moment would you rewrite? 👇
 

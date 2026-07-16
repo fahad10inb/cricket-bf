@@ -445,7 +445,7 @@ OUTPUT: Respond with ONLY a valid JSON object (no markdown fences, no commentary
 }
 
 FACT-CHECK RULES (for the factCheck field ONLY — judge the WHAT REALLY HAPPENED text, never the twist):
-- 'accurate': the text matches real cricket history in substance. Minor wording or missing detail is still accurate. note stays empty.
+- 'accurate': the outcome AND the key specifics (who won, by what margin, which player did the famous thing) all match real history. Missing detail is fine; a WRONG detail is not. note stays empty.
 - 'inaccurate': the text CONTRADICTS real events (wrong winner, wrong score, wrong player). note MUST begin with the words 'In reality,' followed by what truly happened — never repeat the user's incorrect version. If what truly happened matches the user's text, the verdict must be 'accurate' instead.
 - 'fictional': the match or scenario never took place at all. note stays empty.
 
