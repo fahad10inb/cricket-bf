@@ -111,6 +111,30 @@ function buildMatchGrid() {
   updateMatchCount();
 }
 
+// ── Community timelines (featured shared stories) ─────
+async function loadCommunityStrip() {
+  try {
+    const res = await fetch('/api/stories/featured');
+    const list = await res.json();
+    const strip = document.getElementById('community-strip');
+    const row   = document.getElementById('community-row');
+    if (!strip || !row || !Array.isArray(list) || list.length === 0) return;
+    row.innerHTML = '';
+    list.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'community-card';
+      card.innerHTML = `
+        <div class="community-card-pill">${esc(s.matchPill || 'Fan timeline')}</div>
+        <div class="community-card-headline">${esc(s.headline || '')}</div>
+        <div class="community-card-cta">Enter this universe →</div>
+      `;
+      card.addEventListener('click', () => { location.hash = '#/shared/' + s.id; });
+      row.appendChild(card);
+    });
+    strip.classList.remove('hidden');
+  } catch (_) { /* section stays hidden */ }
+}
+
 // ── Match search filter ───────────────────────────────
 function updateMatchCount() {
   const total   = document.querySelectorAll('.match-card').length;
@@ -703,7 +727,7 @@ function route() {
   const [view, id] = location.hash.replace(/^#\/?/, '').split('/');
   switch (view) {
     case 'matches':
-      buildMatchGrid(); showScreen('screen-matches'); break;
+      buildMatchGrid(); loadCommunityStrip(); showScreen('screen-matches'); break;
     case 'match': {
       const m = MATCHES.find(x => x.id === id);
       if (m) { isCustom = false; selectMatch(m); } else showScreen('screen-hero');

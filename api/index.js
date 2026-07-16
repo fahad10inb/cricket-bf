@@ -199,8 +199,46 @@ app.get('/api/votes-all', async (req, res) => {
   }
 });
 
+// ── Share limiter (protects the stories table from spam) ──
+const SHARE_RATE = { perIpHour: 10, globalPerDay: 300 };
+const shareHits = new Map();
+let shareDayCount = 0, shareDayStart = Date.now();
+
+function shareLimit(req, res, next) {
+  const now = Date.now();
+  if (now - shareDayStart > 24 * 60 * 60 * 1000) { shareDayCount = 0; shareDayStart = now; shareHits.clear(); }
+  if (shareDayCount >= SHARE_RATE.globalPerDay) {
+    return res.status(429).json({ error: 'Sharing is taking a breather — try again tomorrow!' });
+  }
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+  const hits = (shareHits.get(ip) || []).filter(t => now - t < 60 * 60 * 1000);
+  if (hits.length >= SHARE_RATE.perIpHour) {
+    return res.status(429).json({ error: `Max ${SHARE_RATE.perIpHour} shared stories per hour — quality over quantity!` });
+  }
+  hits.push(now);
+  shareHits.set(ip, hits);
+  shareDayCount++;
+  next();
+}
+
+// ── GET /api/stories/featured — community timelines ──
+// Approve a story by editing its row in Supabase Table Editor:
+// open cricket_stories -> data (jsonb) -> add  "featured": true
+app.get('/api/stories/featured', async (req, res) => {
+  try {
+    const rows = await sbSelect('cricket_stories?select=id,data&data->>featured=eq.true&order=created.desc&limit=12');
+    res.json(rows.map(r => ({
+      id: r.id,
+      matchPill: r.data.matchPill || '',
+      headline:  r.data.headline  || ''
+    })));
+  } catch (err) {
+    res.json([]); // section simply hides when unavailable
+  }
+});
+
 // ── POST /api/story ──────────────────────────────────
-app.post('/api/story', async (req, res) => {
+app.post('/api/story', shareLimit, async (req, res) => {
   const { matchPill, headline, verdictQ, ripples, story, dossier } = req.body;
   if (!headline || !Array.isArray(story) || story.length === 0) {
     return res.status(400).json({ error: 'headline and story[] required' });

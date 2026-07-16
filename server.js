@@ -204,8 +204,42 @@ function loadStories() {
   return {};
 }
 
+// ── Share limiter (protects the stories file from spam) ──
+const SHARE_RATE = { perIpHour: 10, globalPerDay: 300 };
+const shareHits = new Map();
+let shareDayCount = 0, shareDayStart = Date.now();
+
+function shareLimit(req, res, next) {
+  const now = Date.now();
+  if (now - shareDayStart > 24 * 60 * 60 * 1000) { shareDayCount = 0; shareDayStart = now; shareHits.clear(); }
+  if (shareDayCount >= SHARE_RATE.globalPerDay) {
+    return res.status(429).json({ error: 'Sharing is taking a breather — try again tomorrow!' });
+  }
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+  const hits = (shareHits.get(ip) || []).filter(t => now - t < 60 * 60 * 1000);
+  if (hits.length >= SHARE_RATE.perIpHour) {
+    return res.status(429).json({ error: `Max ${SHARE_RATE.perIpHour} shared stories per hour — quality over quantity!` });
+  }
+  hits.push(now);
+  shareHits.set(ip, hits);
+  shareDayCount++;
+  next();
+}
+
+// ── GET /api/stories/featured — community timelines ──
+// Locally: mark a story by adding  "featured": true  in stories.json
+app.get('/api/stories/featured', (req, res) => {
+  const stories = loadStories();
+  const featured = Object.entries(stories)
+    .filter(([, s]) => s.featured === true)
+    .sort((a, b) => (b[1].created || 0) - (a[1].created || 0))
+    .slice(0, 12)
+    .map(([id, s]) => ({ id, matchPill: s.matchPill || '', headline: s.headline || '' }));
+  res.json(featured);
+});
+
 // ── POST /api/story — save a story, get a share id ───
-app.post('/api/story', (req, res) => {
+app.post('/api/story', shareLimit, (req, res) => {
   const { matchPill, headline, verdictQ, ripples, story, dossier } = req.body;
   if (!headline || !Array.isArray(story) || story.length === 0) {
     return res.status(400).json({ error: 'headline and story[] required' });
