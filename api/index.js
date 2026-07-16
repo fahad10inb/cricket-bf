@@ -124,7 +124,9 @@ app.post('/api/generate', rateLimit, async (req, res) => {
         if (parsed.factCheck && typeof parsed.factCheck === 'object') {
           const v = String(parsed.factCheck.verdict || '').toLowerCase();
           if (['accurate','inaccurate','fictional'].includes(v)) {
-            parsedExtra.factCheck = { verdict: v, note: String(parsed.factCheck.note || '').slice(0, 200) };
+            let fcNote = String(parsed.factCheck.note || '').slice(0, 200);
+            if (v === 'inaccurate' && !/^in reality/i.test(fcNote.trim())) fcNote = '';
+            parsedExtra.factCheck = { verdict: v, note: fcNote };
           }
         }
         paragraphs = parsed.paragraphs.map(p => String(p).trim()).filter(Boolean);
@@ -454,7 +456,7 @@ OUTPUT: Respond with ONLY a valid JSON object (no markdown fences, no commentary
 
 FACT-CHECK RULES (for the factCheck field ONLY — judge the WHAT REALLY HAPPENED text, never the twist):
 - 'accurate': the text matches real cricket history in substance. Minor wording or missing detail is still accurate. note stays empty.
-- 'inaccurate': the text CONTRADICTS real events (wrong winner, wrong score, wrong player). note = one short line stating the real version. If your note would essentially AGREE with the user's text, the verdict must be 'accurate' instead.
+- 'inaccurate': the text CONTRADICTS real events (wrong winner, wrong score, wrong player). note MUST begin with the words 'In reality,' followed by what truly happened — never repeat the user's incorrect version. If what truly happened matches the user's text, the verdict must be 'accurate' instead.
 - 'fictional': the match or scenario never took place at all. note stays empty.
 
 PARAGRAPH RULES:
