@@ -114,10 +114,19 @@ app.post('/api/generate', rateLimit, async (req, res) => {
     if (!story) throw lastErr || new Error('All AI providers failed');
 
     let paragraphs = null, dossier = null;
+    const parsedExtra = {};
     try {
       const start = story.indexOf('{'), end = story.lastIndexOf('}');
       const parsed = JSON.parse(story.slice(start, end + 1));
       if (Array.isArray(parsed.paragraphs) && parsed.paragraphs.length >= 3) {
+        if (parsed.headline) parsedExtra.headline = String(parsed.headline).slice(0, 160);
+        if (Array.isArray(parsed.ripples)) parsedExtra.ripples = parsed.ripples.slice(0, 5).map(r => String(r).slice(0, 200)).filter(Boolean);
+        if (parsed.factCheck && typeof parsed.factCheck === 'object') {
+          const v = String(parsed.factCheck.verdict || '').toLowerCase();
+          if (['accurate','inaccurate','fictional'].includes(v)) {
+            parsedExtra.factCheck = { verdict: v, note: String(parsed.factCheck.note || '').slice(0, 200) };
+          }
+        }
         paragraphs = parsed.paragraphs.map(p => String(p).trim()).filter(Boolean);
         dossier = {
           commentary: String(parsed.commentary || '').slice(0, 400),
@@ -144,7 +153,9 @@ app.post('/api/generate', rateLimit, async (req, res) => {
       paragraphs = split.length >= 3 ? split : [story];
     }
 
-    res.json({ success: true, provider: useProvider, paragraphs, dossier });
+    const aiHeadline = parsedExtra.headline || null;
+    const aiRipples  = parsedExtra.ripples  || null;
+    res.json({ success: true, provider: useProvider, paragraphs, dossier, headline: aiHeadline, ripples: aiRipples, factCheck: parsedExtra.factCheck || null });
   } catch (err) {
     console.error('[/api/generate] Error:', err.message);
     res.status(500).json({ error: err.message });
@@ -239,7 +250,7 @@ app.get('/api/stories/featured', async (req, res) => {
 
 // ── POST /api/story ──────────────────────────────────
 app.post('/api/story', shareLimit, async (req, res) => {
-  const { matchPill, headline, verdictQ, ripples, story, dossier } = req.body;
+  const { matchPill, headline, verdictQ, ripples, story, dossier, factCheck } = req.body;
   if (!headline || !Array.isArray(story) || story.length === 0) {
     return res.status(400).json({ error: 'headline and story[] required' });
   }
@@ -262,6 +273,10 @@ app.post('/api/story', shareLimit, async (req, res) => {
       })).filter(r => r.label && r.reality && r.alternate)
     };
   }
+  let safeFactCheck = null;
+  if (factCheck && ['accurate','inaccurate','fictional'].includes(factCheck.verdict)) {
+    safeFactCheck = { verdict: factCheck.verdict, note: String(factCheck.note || '').slice(0, 200) };
+  }
   const data = {
     matchPill: String(matchPill || '').slice(0, 120),
     headline:  String(headline).slice(0, 160),
@@ -269,6 +284,7 @@ app.post('/api/story', shareLimit, async (req, res) => {
     ripples:   (Array.isArray(ripples) ? ripples : []).slice(0, 6).map(r => String(r).slice(0, 200)),
     story:     story.slice(0, 8).map(p => String(p).slice(0, 1500)),
     dossier:   safeDossier,
+    factCheck: safeFactCheck,
     created:   Date.now()
   };
   const id = 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
@@ -425,6 +441,9 @@ OUTPUT: Respond with ONLY a valid JSON object (no markdown fences, no commentary
     {"handle": "@ThirdFan", "text": "...", "likes": "31K"}
   ],
   "retro": "one killer sentence looking back decades later, like a documentary narrator's closing line",
+  "headline": "ALL-CAPS alternate-universe newspaper headline, max 90 chars",
+  "factCheck": {"verdict": "accurate OR inaccurate OR fictional — judge whether WHAT REALLY HAPPENED above matches real cricket history", "note": "empty if accurate; if inaccurate, one short line stating what actually happened; if fictional, empty"},
+  "ripples": ["4 one-line consequences cascading outward: near-term, career, legacy, cricket-wide"],
   "records": [
     {"label": "a real record/stat this twist changes", "reality": "the TRUE real-world value", "alternate": "the value in this alternate universe"},
     {"label": "a player-legacy line", "reality": "...", "alternate": "..."},

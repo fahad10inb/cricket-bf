@@ -111,33 +111,11 @@
           <p>Pick any cricket match in history and rewrite it your way.</p>
         </div>
 
-        <!-- AI STATUS BANNER (server-managed) -->
         <div class="ai-key-banner">
           <div class="ai-key-banner-left">
             <span class="ai-chip">✨ AI-Powered</span>
-            <span class="ai-key-label">AI stories powered by your server <span class="label-hint">(key stored securely in .env)</span></span>
+            <span class="ai-key-label">Your twist becomes a full alternate-history dossier — live commentary, rewritten records, fan reactions — in seconds. <span class="label-hint">Only the twist is required; leave the rest blank and AI fills it in.</span></span>
           </div>
-          <!-- Provider selector -->
-          <div class="provider-tabs">
-            <button class="provider-tab active" data-provider="cerebras">
-              <span class="provider-icon">🧠</span>
-              <span>Cerebras</span>
-              <span class="provider-badge">Free · 1M tok/day</span>
-            </button>
-            <button class="provider-tab" data-provider="groq">
-              <span class="provider-icon">⚡</span>
-              <span>Groq (Llama 3.3)</span>
-              <span class="provider-badge">Free + Fast</span>
-            </button>
-            <button class="provider-tab" data-provider="gemini">
-              <span class="provider-icon">🔵</span>
-              <span>Google Gemini</span>
-              <span class="provider-badge">Free · 1.5K/day</span>
-            </button>
-          </div>
-          <div class="provider-panel" id="panel-cerebras"></div>
-          <div class="provider-panel hidden" id="panel-groq"></div>
-          <div class="provider-panel hidden" id="panel-gemini"></div>
           <div class="ai-status" id="ai-status"></div>
         </div>
 
@@ -258,12 +236,12 @@
         <div class="verdict-row">
           <button class="verdict-btn agree" id="verdict-agree">
             <span class="vb-icon">😤</span>
-            <span>Would've happened</span>
+            <span>Could've happened</span>
             <span class="vb-pct" id="pct-agree">—</span>
           </button>
           <button class="verdict-btn disagree" id="verdict-disagree">
             <span class="vb-icon">🙅</span>
-            <span>Still would've lost</span>
+            <span>Never happening</span>
             <span class="vb-pct" id="pct-disagree">—</span>
           </button>
         </div>

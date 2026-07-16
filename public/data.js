@@ -1,6 +1,6 @@
 // =====================================================
 // CRICKET BUTTERFLY EFFECT — MATCH DATA
-// 38 matches · 53 moments · dossiers + records
+// 38 matches · 53 moments · dossiers + records · fact-checked
 // =====================================================
 
 const MATCHES = [
@@ -295,7 +295,7 @@ const MATCHES = [
   {
     "id": "kapil1983",
     "year": "1983",
-    "tournament": "ICC World Cup Semi-Final · Old Trafford, Manchester",
+    "tournament": "Prudential World Cup Group Match · Nevill Ground, Tunbridge Wells",
     "team1": "India",
     "team2": "Zimbabwe",
     "accentColor": "#8b6914",
@@ -379,7 +379,7 @@ const MATCHES = [
     "team2": "Australia",
     "accentColor": "#6b2d0a",
     "summary": "England won by 2 runs — the closest Test finish in 25 years. Flintoff's all-round performance and a last-wicket drama cemented it as the greatest Test match ever played.",
-    "realResult": "England won by 2 runs. Australia needed 3 off 18 balls with 2 wickets in hand. Steve Harmison bowled Kasprowicz off a glove — ball brushed the glove, not the bat.",
+    "realResult": "England won by 2 runs. With 3 needed and the last pair together, Kasprowicz gloved Harmison down the leg side — Jones dived, and Edgbaston erupted.",
     "moments": [
       {
         "id": "edgbaston-kasprowicz",
@@ -537,8 +537,8 @@ const MATCHES = [
     "team1": "South Africa",
     "team2": "Australia",
     "accentColor": "#1a5c1a",
-    "summary": "The most heartbreaking moment in World Cup history. South Africa needed 1 run off 1 ball to tie and advance. Lance Klusener ran — and Allan Donald didn't.",
-    "realResult": "South Africa needed 1 off 1 ball. Klusener ran. Donald hesitated, dropped his bat, was run out. Match tied — Australia advanced on run rate from the group stage.",
+    "summary": "The greatest ODI ever played. Klusener had dragged South Africa level needing 1 off 3 balls — then one mix-up with Donald, a tie, and Australia marched to the final.",
+    "realResult": "Tied at 213. Klusener smashed two fours to level it — then the Donald run-out off the fourth ball. Australia advanced on Super Six standings.",
     "moments": [
       {
         "id": "sa99-donald-run",
@@ -967,7 +967,7 @@ const MATCHES = [
             },
             {
               "label": "MCG crowd, February 1961",
-              "reality": "90,800 — still a Test-day record",
+              "reality": "90,800 — a record until MCG 2013",
               "alternate": "Half-empty stands, a dour summer"
             }
           ]
@@ -1245,7 +1245,7 @@ const MATCHES = [
           "records": [
             {
               "label": "Follow-on wins in Test history",
-              "reality": "3 — Headingley '81 among them",
+              "reality": "4 — Headingley '81 among them",
               "alternate": "2 — Headingley stays ordinary"
             },
             {
@@ -3945,7 +3945,7 @@ const MATCHES = [
           "records": [
             {
               "label": "South Africa's world titles",
-              "reality": "1998 KnockOut — nothing since",
+              "reality": "1998 KnockOut, then the 2025 WTC",
               "alternate": "T20 champions — Barbados 2024"
             },
             {

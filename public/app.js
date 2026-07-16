@@ -8,13 +8,7 @@ let currentMatch  = null;
 let currentMoment = null;
 let isCustom      = false;
 let customData    = null;
-let activeProvider = 'cerebras'; // preferred: cerebras > groq > gemini (auto-adjusted by checkHealth)
-let localVotes    = {}; // cache from server
-
-// ── Seed local vote cache ─────────────────────────────
-MATCHES.forEach(m => m.moments.forEach(mo => {
-  localVotes[mo.id] = { agree: Math.floor(Math.random()*6000)+2000, disagree: Math.floor(Math.random()*4000)+800 };
-}));
+let localVotes    = {}; // cache of real counts from the server
 
 // ── Escape user/AI text before innerHTML ──────────────
 function esc(s) {
@@ -59,26 +53,15 @@ for (let i=0;i<120;i++) particles.push(mkParticle());
 })();
 
 // ── Check server health on load ───────────────────────
-const PROVIDER_LABELS = {
-  cerebras: { ready: '🧠 Cerebras AI Ready', story: '🧠 Cerebras AI Story' },
-  groq:     { ready: '⚡ Groq AI Ready',     story: '⚡ Groq AI Story' },
-  gemini:   { ready: '🔵 Gemini AI Ready',   story: '✨ Gemini AI Story' }
-};
-
 async function checkHealth() {
   try {
     const res  = await fetch('/api/health');
     const data = await res.json();
-    // Prefer cerebras > groq > gemini among configured providers
-    const best = ['cerebras', 'groq', 'gemini'].find(p => data[p]) || null;
+    const hasAI = !!(data.cerebras || data.groq || data.gemini);
     const badge = document.getElementById('server-status');
     if (badge) {
-      badge.textContent = best ? PROVIDER_LABELS[best].ready : '⚠ No AI key';
-      badge.className   = 'server-badge ' + (best ? 'ready' : 'warn');
-    }
-    // Auto-select the best configured provider tab
-    if (best && best !== activeProvider) {
-      document.querySelector(`.provider-tab[data-provider="${best}"]`)?.click();
+      badge.textContent = hasAI ? '✨ AI Stories Ready' : '🦋 Template Stories Mode';
+      badge.className   = 'server-badge ' + (hasAI ? 'ready' : 'warn');
     }
     // Load all votes from server
     const vRes = await fetch('/api/votes-all');
@@ -93,7 +76,23 @@ async function checkHealth() {
 function buildMatchGrid() {
   const grid = document.getElementById('matches-grid');
   grid.innerHTML = '';
-  MATCHES.forEach(match => {
+  const ERAS = [
+    { test: (m, i) => i < 6,                     label: '⭐ The Iconic Six' },
+    { test: m => parseInt(m.year, 10) < 1990,    label: '🏛 The Classics · 1933–1987' },
+    { test: m => parseInt(m.year, 10) < 2000,    label: '📼 The Nineties' },
+    { test: m => parseInt(m.year, 10) < 2013,    label: '🏆 The 2000s' },
+    { test: () => true,                          label: '🚀 The Modern Era' }
+  ];
+  let lastEra = null;
+  MATCHES.forEach((match, i) => {
+    const era = ERAS.find(e => e.test(match, i)).label;
+    if (era !== lastEra) {
+      lastEra = era;
+      const h = document.createElement('div');
+      h.className = 'match-era-header';
+      h.textContent = era;
+      grid.appendChild(h);
+    }
     const card = document.createElement('div');
     card.className = 'match-card';
     card.dataset.search = `${match.team1} ${match.team2} ${match.year} ${match.tournament}`.toLowerCase();
@@ -151,6 +150,8 @@ function setupMatchSearch() {
     document.querySelectorAll('.match-card').forEach(card => {
       card.classList.toggle('filtered-out', q !== '' && !card.dataset.search.includes(q));
     });
+    // Era headers only make sense in the unfiltered view
+    document.querySelectorAll('.match-era-header').forEach(h => h.classList.toggle('filtered-out', q !== ''));
     updateMatchCount();
   });
 }
@@ -249,14 +250,16 @@ async function generateCustomStory() {
 
   const ripples = ['ripple1','ripple2','ripple3','ripple4']
     .map(id => document.getElementById(id).value.trim()).filter(Boolean);
-  if (ripples.length === 0) ripples.push('Cricket history would never look the same again.');
+  const ripplesAuto  = ripples.length === 0; // blank → let the AI write them
+  const headlineAuto = !headline;
+  if (ripplesAuto) ripples.push('Cricket history would never look the same again.');
 
   customData = {
     matchPill: `${t1} vs ${t2}${tournament?' · '+tournament:''}`,
     headline:  headline || `${t1.toUpperCase()} — HISTORY REWRITTEN`,
     eyebrow:   'In Another Universe...',
     verdictQ:  `If this had happened, would it have changed cricket history forever?`,
-    ripples,
+    ripples, ripplesAuto, headlineAuto,
     story:     null,
     momentId:  'custom-' + Date.now(),
     t1, t2, tournament, realMoment, twist, headline
@@ -289,9 +292,8 @@ async function revealStory() {
           tournament: customData.tournament,
           realMoment: customData.realMoment,
           twist:      customData.twist,
-          ripples:    customData.ripples,
-          headline:   customData.headline,
-          provider:   activeProvider
+          ripples:    customData.ripplesAuto ? [] : customData.ripples,
+          headline:   customData.headlineAuto ? '' : customData.headline
         })
       });
       if (!res.ok) { const e = await res.json(); throw new Error(e.error||'Server error'); }
@@ -299,7 +301,14 @@ async function revealStory() {
       customData.story       = resp.paragraphs;
       customData.dossier     = resp.dossier || templateDossier(customData);
       customData.aiGenerated = true;
-      customData.aiProvider  = resp.provider;
+      // If the user left ripples/headline blank, prefer what the AI wrote
+      if (customData.ripplesAuto && Array.isArray(resp.ripples) && resp.ripples.length >= 2) {
+        customData.ripples = resp.ripples;
+      }
+      if (customData.headlineAuto && resp.headline) {
+        customData.headline = resp.headline;
+      }
+      customData.factCheck = resp.factCheck || null;
     } catch (err) {
       console.warn('AI failed, using template:', err.message);
       customData.story       = templateStory(customData);
@@ -332,7 +341,7 @@ async function revealStory() {
   document.getElementById('ripple-timeline').innerHTML    = '';
   document.getElementById('story-prose').innerHTML        = '';
   document.getElementById('verdict-question').textContent = data.verdictQ   || 'Would this have happened?';
-  renderDossierTop(data.dossier);
+  renderDossierTop(data.dossier, data.factCheck);
   const dossierTop = document.getElementById('dossier-top');
   if (dossierTop) dossierTop.classList.remove('visible');
 
@@ -340,7 +349,7 @@ async function revealStory() {
   const badge = document.querySelector('.story-badge');
   if (badge) {
     if (data.aiGenerated) {
-      badge.textContent = PROVIDER_LABELS[data.aiProvider]?.story || '✨ AI Story';
+      badge.textContent = '✨ AI-Generated Timeline';
     } else {
       badge.textContent = '🦋 Alternate Timeline';
     }
@@ -376,14 +385,15 @@ async function revealStory() {
   buildMoreCards(data.momentId);
   showScreen('screen-story');
 
-  // Animate headline → live call → ripples → reactions/story
+  // Animate headline → live call → ripples → reactions/story (snappy —
+  // shared-link visitors on phones won't wait for slow reveals)
   setTimeout(() => {
-    typewriter(document.getElementById('story-headline'), data.headline || '', 35, () => {
+    typewriter(document.getElementById('story-headline'), data.headline || '', 18, () => {
       document.getElementById('dossier-top')?.classList.add('visible');
       setTimeout(() => {
         document.querySelectorAll('.ripple-item').forEach((el,i) =>
-          setTimeout(() => el.classList.add('visible'), i*120));
-      }, 500);
+          setTimeout(() => el.classList.add('visible'), i*90));
+      }, 300);
       setTimeout(() => {
         const prose = document.getElementById('story-prose');
         renderDossierBottom(prose, data.dossier, storyArr);
@@ -391,17 +401,29 @@ async function revealStory() {
         prose.style.transform = 'translateY(20px)';
         prose.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         setTimeout(() => { prose.style.opacity='1'; prose.style.transform='translateY(0)'; }, 100);
-      }, (data.ripples||[]).length * 120 + 700);
+      }, (data.ripples||[]).length * 90 + 400);
     });
-  }, 300);
+  }, 200);
 }
 
 // ── Dossier rendering (artifacts from the alt universe) ──
-function renderDossierTop(dossier) {
+const FACT_CHECK_PILLS = {
+  accurate:   { cls: 'ok',   text: '✅ Reality verified' },
+  inaccurate: { cls: 'warn', text: '⚠️ Reality check' },
+  fictional:  { cls: 'fic',  text: '🌀 Fully fictional scenario — pure multiverse' }
+};
+
+function renderDossierTop(dossier, factCheck) {
   const top = document.getElementById('dossier-top');
   if (!top) return;
-  if (!dossier || !dossier.commentary) { top.innerHTML = ''; return; }
-  top.innerHTML = `
+  let fcHtml = '';
+  if (factCheck && FACT_CHECK_PILLS[factCheck.verdict]) {
+    const p = FACT_CHECK_PILLS[factCheck.verdict];
+    const note = factCheck.verdict === 'inaccurate' && factCheck.note ? `: ${esc(factCheck.note)}` : '';
+    fcHtml = `<div class="fact-pill ${p.cls}">${p.text}${note}</div>`;
+  }
+  if (!dossier || !dossier.commentary) { top.innerHTML = fcHtml; return; }
+  top.innerHTML = fcHtml + `
     <div class="dsr-commentary">
       <div class="dsr-comm-head"><span class="live-dot"></span>LIVE &nbsp;·&nbsp; ${esc(dossier.channel || 'Commentary')}</div>
       <div class="dsr-comm-text">${esc(dossier.commentary)}</div>
@@ -684,7 +706,8 @@ async function share() {
             verdictQ:  customData.verdictQ,
             ripples:   customData.ripples,
             story:     customData.story,
-            dossier:   customData.dossier
+            dossier:   customData.dossier,
+            factCheck: customData.factCheck
           })
         });
         if (res.ok) customData.shareId = (await res.json()).id;
@@ -696,8 +719,8 @@ async function share() {
     headline = currentMoment.headline;
     url = `${location.origin}/#/story/${encodeURIComponent(currentMoment.id)}`;
   }
-  // Phones: native share sheet (WhatsApp, Instagram, etc.)
-  if (navigator.share) {
+  // Touch devices: native share sheet. Desktop: clipboard (less clunky there).
+  if (navigator.share && matchMedia('(pointer: coarse)').matches) {
     try {
       await navigator.share({
         title: 'Cricket Butterfly Effect',
@@ -731,6 +754,7 @@ async function loadSharedStory(storyId) {
       verdictQ: s.verdictQ || 'Would this have happened?',
       ripples: s.ripples || [], story: s.story,
       dossier: s.dossier || null,
+      factCheck: s.factCheck || null,
       momentId: 'shared-' + storyId, aiGenerated: false, shareId: storyId
     };
     isCustom = true;
@@ -801,19 +825,6 @@ function setupCharCounters() {
   });
 }
 
-// ── Provider tabs ─────────────────────────────────────
-function setupProviderTabs() {
-  document.querySelectorAll('.provider-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.provider-tab').forEach(t=>t.classList.remove('active'));
-      tab.classList.add('active');
-      activeProvider = tab.dataset.provider;
-      document.querySelectorAll('.provider-panel').forEach(p=>p.classList.add('hidden'));
-      document.getElementById(`panel-${activeProvider}`)?.classList.remove('hidden');
-    });
-  });
-}
-
 // ── Nav ───────────────────────────────────────────────
 const SCREEN_ROUTES = { 'screen-hero': '#/', 'screen-matches': '#/matches', 'screen-custom': '#/custom', 'screen-debates': '#/debates' };
 
@@ -839,7 +850,6 @@ function setupNav() {
 // ── Init ──────────────────────────────────────────────
 setupNav();
 setupCharCounters();
-setupProviderTabs();
 setupVoting();
 setupMatchSearch();
 buildMatchGrid();
