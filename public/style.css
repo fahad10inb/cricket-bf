@@ -318,24 +318,26 @@ body {
 /* ══════════════════════════════════════════
    THE TOSS THAT NEVER LANDS — landing intro
 ══════════════════════════════════════════ */
-body.intro .hero-eyebrow    { animation: introFade 0.5s ease 4.45s backwards; }
-body.intro .hero-title em   { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.55s backwards; }
+/* Staging: the golden "If?" is the burst origin — it enters FIRST,
+   then attention cascades outward from it */
 body.intro .hero-title span {
   animation:
-    introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.7s backwards,
-    titleIgnite 1.5s ease-out 4.7s backwards; /* inherits the coin's light */
+    introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.6s backwards,
+    titleIgnite 1.5s ease-out 4.6s backwards; /* inherits the coin's light */
 }
 @keyframes titleIgnite {
   0%   { filter: drop-shadow(0 0 75px rgba(245,200,66,0.95)); }
   100% { filter: drop-shadow(0 0 40px rgba(245,200,66,0.4)); }
 }
-body.intro .hero-sub        { animation: introFade 0.5s ease 4.9s backwards; }
-body.intro .daily-card      { animation: introRise 0.5s ease 5.0s backwards; }
-body.intro .hero-btns       { animation: introRise 0.5s ease 5.1s backwards; }
-body.intro .hero-btns-mini  { animation: introFade 0.5s ease 5.2s backwards; }
+body.intro .hero-title em   { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.75s backwards; }
+body.intro .hero-eyebrow    { animation: introFade 0.5s ease 4.95s backwards; }
+body.intro .hero-sub        { animation: introFade 0.5s ease 5.05s backwards; }
+body.intro .daily-card      { animation: introRise 0.5s ease 5.15s backwards; }
+body.intro .hero-btns       { animation: introRise 0.5s ease 5.25s backwards; }
+body.intro .hero-btns-mini  { animation: introFade 0.5s ease 5.35s backwards; }
 body.intro .hero-ticker,
-body.intro .hero-server-row { animation: introFade 0.6s ease 5.3s backwards; }
-body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
+body.intro .hero-server-row { animation: introFade 0.6s ease 5.45s backwards; }
+body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.55s backwards; }
 
 @keyframes introFade { from { opacity: 0; } }
 @keyframes introRise { from { opacity: 0; transform: translateY(20px); } }
@@ -395,10 +397,14 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
   letter-spacing: 0.3em;
   color: var(--muted);
   padding: 0 1.2rem;
-  animation: introFade 0.7s ease 0.25s backwards;
+  animation: trackIn 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.25s backwards;
   transition: color 0.4s ease;
 }
 .toss-caption.gold { color: var(--gold); text-shadow: 0 0 16px rgba(245,200,66,0.45); }
+@keyframes trackIn {
+  from { opacity: 0; letter-spacing: 0.62em; }
+  to   { opacity: 1; letter-spacing: 0.3em; }
+}
 
 .toss-stage {
   position: relative;
@@ -411,11 +417,35 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 
 /* Beat 2 — the coin rises in slow motion */
 .toss-arc { opacity: 0; }
+.toss-overlay.play .toss-stage { animation: stagePush 4.6s ease-out both; }
+@keyframes stagePush {
+  from { transform: scale(1); }
+  to   { transform: scale(1.055); }
+}
 .toss-overlay.play .toss-arc { animation: tossRise 1.7s cubic-bezier(0.33, 0.9, 0.45, 1) 0.9s both; }
 @keyframes tossRise {
   0%   { opacity: 0; transform: translateY(58vh) scale(0.45); }
   12%  { opacity: 1; }
   100% { opacity: 1; transform: translateY(-13vh) scale(1.08); }
+}
+.toss-arc::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  translate: -50%;
+  width: 4px;
+  height: 20vh;
+  background: linear-gradient(to bottom, rgba(245,200,66,0.7), transparent);
+  filter: blur(2px);
+  opacity: 0;
+}
+.toss-overlay.play .toss-arc::after { animation: riseTrail 1.7s ease-out 0.9s both; }
+@keyframes riseTrail {
+  0%   { opacity: 0; }
+  15%  { opacity: 0.8; }
+  80%  { opacity: 0.25; }
+  100% { opacity: 0; }
 }
 .toss-coin {
   width: clamp(110px, 14vmin, 160px);
@@ -427,7 +457,14 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 .toss-overlay.play .toss-coin { animation: tossSpin 1.7s cubic-bezier(0.3, 0.5, 0.5, 1) 0.9s both; }
 @keyframes tossSpin {
   0%   { transform: rotateX(0deg) rotateZ(-10deg); }
-  100% { transform: rotateX(1530deg) rotateZ(4deg); }
+  100% { transform: rotateX(1500deg) rotateZ(4deg); }
+}
+.toss-overlay.phase-freeze .toss-coin {
+  animation: freezeBreath 1.1s ease-in-out infinite alternate;
+}
+@keyframes freezeBreath {
+  from { transform: rotateX(1500deg) rotateZ(4deg) scale(1); }
+  to   { transform: rotateX(1512deg) rotateZ(5.5deg) scale(1.025); }
 }
 .coin-face {
   position: absolute;
@@ -501,7 +538,7 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
   0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
   100% { transform: translate(-17vw, 40vh) rotate(-320deg); opacity: 0.12; }
 }
-.toss-overlay.phase-split .split-coin.if { animation: splitIf 0.8s cubic-bezier(0.5, 0.05, 0.6, 1) both; }
+.toss-overlay.phase-split .split-coin.if { animation: splitIf 0.8s cubic-bezier(0.62, 0.02, 0.78, 0.55) both; }
 @keyframes splitIf {
   0%   { transform: translate(0, 0) rotate(0deg); }
   45%  { transform: translate(12vw, -2vh) rotate(240deg); }
@@ -544,6 +581,15 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
   opacity: 0;
 }
 .toss-overlay.phase-land .toss-ring { animation: ringOut 0.7s ease-out both; }
+.toss-ring::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: inherit;
+  border-radius: 50%;
+  opacity: 0;
+}
+.toss-overlay.phase-land .toss-ring::after { animation: ringOut 0.8s ease-out 0.14s both; }
 @keyframes ringOut {
   0%   { opacity: 0.9; transform: scale(0.3); }
   100% { opacity: 0;   transform: scale(9); }
@@ -558,7 +604,9 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 .toss-overlay.phase-land .toss-flash { animation: tossFlashOut 0.55s ease-out both; }
 @keyframes tossFlashOut {
   0%   { opacity: 0; }
-  20%  { opacity: 0.95; }
+  12%  { opacity: 0.95; }
+  30%  { opacity: 0.25; }
+  45%  { opacity: 0.6; }
   100% { opacity: 0; }
 }
 .toss-overlay.phase-land { animation: jumboShake 0.3s ease-out; }
