@@ -695,6 +695,20 @@ async function share() {
     headline = currentMoment.headline;
     url = `${location.origin}/#/story/${encodeURIComponent(currentMoment.id)}`;
   }
+  // Phones: native share sheet (WhatsApp, Instagram, etc.)
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'Cricket Butterfly Effect',
+        text: `🦋 "${headline}" — In another universe...`,
+        url
+      });
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') return; // user closed the sheet
+      // fall through to clipboard
+    }
+  }
   const text = `🦋 Cricket Butterfly Effect\n"${headline}"\n\n${url}\n\n#CricketButterflyEffect #WhatIf #Cricket`;
   try {
     await navigator.clipboard.writeText(text);
