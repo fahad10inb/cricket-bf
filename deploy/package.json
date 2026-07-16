@@ -1,0 +1,9 @@
+{
+  "name": "cricket-butterfly-effect",
+  "version": "2.0.0",
+  "description": "Cricket Butterfly Effect - What If History Simulator",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

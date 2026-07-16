@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cricket Butterfly Effect — Rewrite History</title>
+  <meta name="description" content="Change one moment. Watch cricket history unravel. The ultimate what-if simulator for cricket's most legendary matches — or create your own." />
+
+  <!-- Social previews (LinkedIn/Twitter/WhatsApp). NOTE: after deploying,
+       replace og:image/twitter:image with your ABSOLUTE url, e.g.
+       https://your-app.onrender.com/og-image.png — scrapers ignore relative paths -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cricket Butterfly Effect — Rewrite History 🦋" />
+  <meta property="og:description" content="Change one moment. Watch cricket history unravel. What if Dhoni never promoted himself in 2011? What if the Super Over went the other way? Find out — or create your own twist with AI." />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cricket Butterfly Effect — Rewrite History 🦋" />
+  <meta name="twitter:description" content="Change one moment. Watch cricket history unravel. The what-if simulator for cricket's legendary matches." />
+  <meta name="twitter:image" content="/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ===== HERO ===== -->
+  <section id="screen-hero" class="screen active">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="dot"></span>Cricket History Simulator<span class="dot"></span></div>
+      <h1 class="hero-title"><em>What</em><span>If?</span></h1>
+      <p class="hero-sub">Change one moment.<br/>Watch cricket history unravel.</p>
+      <div class="hero-ticker">
+        <span>38 Legendary Matches</span><span class="sep">·</span>
+        <span>Bodyline 1933</span><span class="sep">·</span>
+        <span>2019 Super Over</span><span class="sep">·</span>
+        <span>Miandad's Six</span><span class="sep">·</span>
+        <span>Gabba 2021</span><span class="sep">·</span>
+        <span>Your Match →</span>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" id="btn-legendary">Legendary Matches</button>
+        <button class="btn-outline" id="btn-custom">✏️ Create Your Own</button>
+        <button class="btn-outline" id="btn-surprise">🎲 Surprise Me</button>
+        <button class="btn-outline" id="btn-debates">🔥 Great Debates</button>
+      </div>
+      <div class="hero-server-row">
+        <span class="server-badge" id="server-status">Connecting...</span>
+      </div>
+    </div>
+    <div class="pitch-art">
+      <div class="pitch-strip"></div>
+      <div class="pitch-crease"></div>
+      <div class="pitch-crease right"></div>
+    </div>
+  </section>
+
+  <!-- ===== MATCH SELECT ===== -->
+  <section id="screen-matches" class="screen">
+    <header class="top-nav">
+      <button class="back-btn" data-to="screen-hero">← Back</button>
+      <h2>Choose a Legendary Match</h2>
+      <button class="btn-outline-sm" id="nav-custom-btn">✏️ Own Match</button>
+    </header>
+    <div class="match-search-wrap">
+      <input type="text" id="match-search" placeholder="🔎 Search by team, year or tournament..." autocomplete="off" />
+      <span class="match-count" id="match-count"></span>
+    </div>
+    <div class="matches-grid" id="matches-grid"></div>
+  </section>
+
+  <!-- ===== MOMENT SELECT ===== -->
+  <section id="screen-moments" class="screen">
+    <header class="top-nav">
+      <button class="back-btn" data-to="screen-matches">← Matches</button>
+      <h2 id="moment-nav-title">Pick a Moment</h2>
+      <span></span>
+    </header>
+    <div class="match-banner" id="match-banner"></div>
+    <p class="moments-label">🦋 Which moment do you want to rewrite?</p>
+    <div class="moments-list" id="moments-list"></div>
+  </section>
+
+  <!-- ===== GREAT DEBATES ===== -->
+  <section id="screen-debates" class="screen">
+    <header class="top-nav">
+      <button class="back-btn" data-to="screen-hero">← Back</button>
+      <h2>🔥 The Great Debates</h2>
+      <span></span>
+    </header>
+    <p class="debates-sub">The arguments cricket fans never stop having. Pick a side — the numbers are live.</p>
+    <div class="debates-grid" id="debates-grid"></div>
+  </section>
+
+  <!-- ===== CUSTOM MATCH CREATOR ===== -->
+  <section id="screen-custom" class="screen">
+    <header class="top-nav">
+      <button class="back-btn" data-to="screen-hero">← Back</button>
+      <h2>Create Your Butterfly</h2>
+      <span></span>
+    </header>
+    <div class="custom-form-wrap">
+      <div class="custom-form-card">
+        <div class="custom-form-header">
+          <div class="butterfly-big">🦋</div>
+          <h3>Any match. Any moment. Any universe.</h3>
+          <p>Pick any cricket match in history and rewrite it your way.</p>
+        </div>
+
+        <!-- AI STATUS BANNER (server-managed) -->
+        <div class="ai-key-banner">
+          <div class="ai-key-banner-left">
+            <span class="ai-chip">✨ AI-Powered</span>
+            <span class="ai-key-label">AI stories powered by your server <span class="label-hint">(key stored securely in .env)</span></span>
+          </div>
+          <!-- Provider selector -->
+          <div class="provider-tabs">
+            <button class="provider-tab active" data-provider="cerebras">
+              <span class="provider-icon">🧠</span>
+              <span>Cerebras</span>
+              <span class="provider-badge">Free · 1M tok/day</span>
+            </button>
+            <button class="provider-tab" data-provider="groq">
+              <span class="provider-icon">⚡</span>
+              <span>Groq (Llama 3.3)</span>
+              <span class="provider-badge">Free + Fast</span>
+            </button>
+            <button class="provider-tab" data-provider="gemini">
+              <span class="provider-icon">🔵</span>
+              <span>Google Gemini</span>
+              <span class="provider-badge">Free · 1.5K/day</span>
+            </button>
+          </div>
+          <div class="provider-panel" id="panel-cerebras"></div>
+          <div class="provider-panel hidden" id="panel-groq"></div>
+          <div class="provider-panel hidden" id="panel-gemini"></div>
+          <div class="ai-status" id="ai-status"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Teams</label>
+          <div class="teams-input-row">
+            <input type="text" id="team1-input" placeholder="e.g. India" maxlength="30" />
+            <span class="vs-badge">VS</span>
+            <input type="text" id="team2-input" placeholder="e.g. Pakistan" maxlength="30" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Match / Tournament</label>
+          <input type="text" id="tournament-input" placeholder="e.g. 2022 Asia Cup Final, Dubai" maxlength="60" />
+        </div>
+
+        <div class="form-group">
+          <label>What actually happened? <span class="label-hint">(the real moment)</span></label>
+          <textarea id="real-moment-input" placeholder="e.g. Neesham hit the last ball of the Super Over for six to tie it, and England won on boundary countback..." rows="3" maxlength="300"></textarea>
+          <div class="char-count" id="real-char">0 / 300</div>
+        </div>
+
+        <div class="form-group highlight-group">
+          <label>🦋 Your twist — What if instead...</label>
+          <textarea id="twist-input" placeholder="e.g. What if the ball had been called a no-ball on that last delivery? New Zealand would have needed just 1 off 2 balls..." rows="3" maxlength="300"></textarea>
+          <div class="char-count" id="twist-char">0 / 300</div>
+        </div>
+
+        <div class="form-group">
+          <label>What would've been the ripple effects? <span class="label-hint">(optional, up to 4 bullet points)</span></label>
+          <input type="text" class="ripple-input" id="ripple1" placeholder="Ripple 1 — e.g. New Zealand win their first World Cup" maxlength="80" />
+          <input type="text" class="ripple-input" id="ripple2" placeholder="Ripple 2 — e.g. Kane Williamson becomes a national hero overnight" maxlength="80" />
+          <input type="text" class="ripple-input" id="ripple3" placeholder="Ripple 3 — e.g. England's Stokes legacy completely different" maxlength="80" />
+          <input type="text" class="ripple-input" id="ripple4" placeholder="Ripple 4 — e.g. ICC reviews boundary countback rule immediately" maxlength="80" />
+        </div>
+
+        <div class="form-group">
+          <label>Your alternate headline <span class="label-hint">(what would the newspapers say?)</span></label>
+          <input type="text" id="headline-input" placeholder="e.g. NEW ZEALAND KINGS OF THE WORLD — History Finally Made!" maxlength="100" />
+        </div>
+
+        <button class="btn-primary full-width" id="btn-generate-custom">
+          <span id="generate-btn-label">🦋 Generate Alternate History</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI LOADING OVERLAY -->
+  <div class="ai-loading-overlay" id="ai-loading-overlay">
+    <div class="ai-loading-card">
+      <div class="ai-loading-butterfly">🦋</div>
+      <div class="ai-loading-title">AI is rewriting history...</div>
+      <div class="ai-loading-sub" id="ai-loading-sub">Consulting the alternate timeline</div>
+      <div class="ai-loading-bar"><div class="ai-loading-fill" id="ai-loading-fill"></div></div>
+      <div class="ai-loading-steps" id="ai-loading-steps"></div>
+    </div>
+  </div>
+
+  <!-- ===== TIMELINE FORK (TWIST REVEAL) ===== -->
+  <section id="screen-twist" class="screen">
+    <div class="twist-wrap">
+      <div class="twist-match-label" id="twist-match-label"></div>
+      <div class="fork-visual">
+        <div class="fork-branch real-branch">
+          <div class="branch-tag">REALITY</div>
+          <div class="branch-line"></div>
+          <div class="branch-card" id="real-branch-card"></div>
+        </div>
+        <div class="fork-center">
+          <div class="fork-butterfly">🦋</div>
+          <div class="fork-dot"></div>
+          <div class="fork-subtitle">One moment.<br/>Two universes.</div>
+        </div>
+        <div class="fork-branch alt-branch">
+          <div class="branch-tag alt">ALTERNATE</div>
+          <div class="branch-line alt"></div>
+          <div class="branch-card alt" id="alt-branch-card"></div>
+        </div>
+      </div>
+      <button class="btn-primary glow-btn" id="btn-reveal">
+        Enter the Alternate Universe →
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== STORY / ALTERNATE HISTORY ===== -->
+  <section id="screen-story" class="screen">
+    <div class="story-wrap">
+
+      <div class="story-topbar">
+        <button class="back-btn" id="story-back-btn">← Try Another</button>
+        <div class="story-badge">🦋 Alternate Timeline</div>
+        <button class="share-btn" id="share-btn">Share ↗</button>
+      </div>
+
+      <div class="story-match-pill" id="story-match-pill"></div>
+
+      <div class="story-head-section">
+        <div class="story-eyebrow" id="story-eyebrow">In Another Universe...</div>
+        <h1 class="story-headline" id="story-headline"></h1>
+      </div>
+
+      <div id="dossier-top"></div>
+
+      <div class="story-divider">
+        <span>The Ripple Effect</span>
+      </div>
+
+      <div class="ripple-timeline" id="ripple-timeline"></div>
+
+      <div class="story-prose" id="story-prose"></div>
+
+      <div class="verdict-section">
+        <div class="verdict-header">Fan Verdict</div>
+        <p class="verdict-question" id="verdict-question"></p>
+        <div class="verdict-row">
+          <button class="verdict-btn agree" id="verdict-agree">
+            <span class="vb-icon">😤</span>
+            <span>Would've happened</span>
+            <span class="vb-pct" id="pct-agree">—</span>
+          </button>
+          <button class="verdict-btn disagree" id="verdict-disagree">
+            <span class="vb-icon">🙅</span>
+            <span>Still would've lost</span>
+            <span class="vb-pct" id="pct-disagree">—</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="more-timelines">
+        <h3>Explore More Butterfly Moments</h3>
+        <div class="more-grid" id="more-grid"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">📋 Copied to clipboard!</div>
+
+  <script src="data.js"></script>
+  <script src="debates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

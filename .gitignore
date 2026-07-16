@@ -1,0 +1,7 @@
+node_modules/
+.env
+votes.json
+_archive/
+stories.json
+deploy/node_modules/
+.vercel/
