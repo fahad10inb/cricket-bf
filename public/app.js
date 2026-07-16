@@ -147,6 +147,21 @@ function setupMatchSearch() {
   });
 }
 
+// ── Today's Butterfly Moment (rotates daily, same for everyone) ──
+function setupDailyCard() {
+  const card = document.getElementById('daily-card');
+  if (!card) return;
+  const all = [];
+  MATCHES.forEach(m => m.moments.forEach(mo => all.push({ match: m, moment: mo })));
+  if (!all.length) { card.style.display = 'none'; return; }
+  const dayIndex = Math.floor(Date.now() / 86400000) % all.length;
+  const { match, moment } = all[dayIndex];
+  document.getElementById('daily-q').textContent = moment.what;
+  document.getElementById('daily-headline').textContent =
+    `${match.team1} vs ${match.team2}, ${match.year} — "${moment.headline}"`;
+  card.addEventListener('click', () => { location.hash = '#/twist/' + moment.id; });
+}
+
 // ── Surprise me: random butterfly moment ──────────────
 function surpriseMe() {
   const match  = MATCHES[Math.floor(Math.random() * MATCHES.length)];
@@ -897,6 +912,7 @@ setupNav();
 setupCharCounters();
 setupVoting();
 setupMatchSearch();
+setupDailyCard();
 buildMatchGrid();
 checkHealth();
 initRouting();
