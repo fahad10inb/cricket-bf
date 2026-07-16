@@ -312,30 +312,8 @@ body {
   .pitch-art { display: none; }
 }
 
-/* pitch art */
-.pitch-art {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 250px;
-  opacity: 0.08;
-  z-index: 1;
-}
-.pitch-strip {
-  width: 100%; height: 100%;
-  background: linear-gradient(to bottom, #6b8c5a, #8a7c5e);
-  border-radius: 4px;
-}
-.pitch-crease {
-  position: absolute;
-  top: 25%;
-  left: 0; right: 0;
-  height: 2px;
-  background: white;
-}
-.pitch-crease.right { top: 75%; }
+/* pitch art — retired: read as a smudge on bright screens, not a pitch */
+.pitch-art { display: none; }
 
 /* ══════════════════════════════════════════
    TOP NAV (shared)
