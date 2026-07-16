@@ -315,6 +315,41 @@ body {
 /* pitch art — retired: read as a smudge on bright screens, not a pitch */
 .pitch-art { display: none; }
 
+/* ── Landing intro: reality flips into possibility ── */
+.hero-title { perspective: 700px; }
+
+body.intro .hero-eyebrow    { animation: introFade 0.5s ease 0.15s backwards; }
+body.intro .hero-title em   { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s backwards; }
+body.intro .hero-title span { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s backwards; }
+body.intro .hero-sub        { animation: introFade 0.5s ease 1.9s backwards; }
+body.intro .daily-card      { animation: introRise 0.5s ease 2.05s backwards; }
+body.intro .hero-btns       { animation: introRise 0.5s ease 2.2s backwards; }
+body.intro .hero-btns-mini  { animation: introFade 0.5s ease 2.35s backwards; }
+body.intro .hero-ticker,
+body.intro .hero-server-row { animation: introFade 0.6s ease 2.5s backwards; }
+body.intro .hero-ghosts     { animation: introFade 1.4s ease 2.55s backwards; }
+
+@keyframes introFade { from { opacity: 0; } }
+@keyframes introRise { from { opacity: 0; transform: translateY(20px); } }
+
+/* "Is." — reality: flat, gray, unremarkable */
+.hero-title span.is-real {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  background-clip: initial;
+  color: #8c8caf;
+  filter: none;
+}
+/* the overturn */
+.hero-title span.flipping { animation: ifFlip 0.42s ease-in-out !important; }
+@keyframes ifFlip {
+  0%   { transform: rotateX(0); }
+  45%  { transform: rotateX(88deg); }
+  55%  { transform: rotateX(88deg); }
+  100% { transform: rotateX(0); }
+}
+
 /* ── Ghost headlines: other universes on the hero flanks (wide screens) ── */
 .hero-ghosts {
   display: none;

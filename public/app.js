@@ -147,6 +147,31 @@ function setupMatchSearch() {
   });
 }
 
+// ── Landing intro: "What Is." flips into "What If?" ───
+function runIntro() {
+  const h = location.hash;
+  if (h && h !== '#' && h !== '#/') return;                       // deep links skip straight to content
+  if (sessionStorage.getItem('introSeen')) return;                 // once per session
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  try { sessionStorage.setItem('introSeen', '1'); } catch (_) {}
+
+  document.body.classList.add('intro');
+  const ifSpan = document.querySelector('.hero-title span');
+  if (ifSpan) {
+    ifSpan.textContent = 'Is.';
+    ifSpan.classList.add('is-real');
+    setTimeout(() => {
+      ifSpan.classList.add('flipping');
+      setTimeout(() => {
+        ifSpan.textContent = 'If?';
+        ifSpan.classList.remove('is-real');
+      }, 190); // swap while edge-on, like a verdict overturning
+      setTimeout(() => ifSpan.classList.remove('flipping'), 420);
+    }, 1250);
+  }
+  setTimeout(() => document.body.classList.remove('intro'), 3000);
+}
+
 // ── Ghost headlines: other universes leaking into the hero flanks ──
 function setupHeroGhosts() {
   const left  = document.getElementById('hero-ghosts-left');
@@ -1079,4 +1104,5 @@ setupDailyCard();
 setupHeroGhosts();
 buildMatchGrid();
 checkHealth();
+runIntro();
 initRouting();
