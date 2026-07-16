@@ -32,7 +32,7 @@ const DEBATES = [
     id: "d-2003-toss",
     tag: "The Toss",
     question: "India bat first in the 2003 final — does the Cup come home?",
-    optionA: { emoji: "🇮🇳", label: "Cup comes home" },
+    optionA: { emoji: "🏆", label: "Cup comes home" },
     optionB: { emoji: "🦘", label: "That Australia wins anyway" },
     momentId: "2003-ganguly-bats"
   },

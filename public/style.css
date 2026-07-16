@@ -1083,11 +1083,24 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
   box-shadow: 0 0 30px rgba(245,200,66,0.08);
 }
 
+/* the shared past: one timeline descends into the butterfly, then splits */
 .fork-center {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+}
+/* the shared past: one timeline descends into the butterfly, then splits */
+.fork-center::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 16vh;
+  background: linear-gradient(to bottom, transparent, rgba(245,200,66,0.55));
 }
 .fork-butterfly {
   font-size: 2.5rem;
