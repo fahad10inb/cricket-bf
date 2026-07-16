@@ -1063,6 +1063,20 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
 @media (max-width: 640px) {
+  /* ── Hero: fit one phone screen, calm hierarchy ── */
+  .hero-title { margin-bottom: 1rem; }
+  .hero-sub { font-size: 1.05rem; margin-bottom: 1.2rem; }
+  .daily-card { margin-bottom: 1.4rem; padding: 0.85rem 1rem; }
+  .daily-headline { display: none; }  /* the question is the hook; the quote is noise here */
+  .daily-q { font-size: 1rem; }
+  .hero-ticker { display: none; }     /* wraps into a noisy gray block on phones */
+  .hero-server-row { margin-top: 1rem; }
+
+  /* ── Top nav: stop the squeeze ── */
+  .top-nav { padding: 1rem 0.9rem; gap: 8px; }
+  .top-nav h2 { font-size: 0.95rem; }
+  .btn-outline-sm { white-space: nowrap; padding: 0.45rem 0.85rem; font-size: 0.72rem; }
+
   .matches-grid { grid-template-columns: 1fr; padding: 1rem; }
   .story-topbar { padding: 1rem 0; gap: 6px; }
   .story-topbar .story-badge { display: none; } /* actions need the room on phones */
