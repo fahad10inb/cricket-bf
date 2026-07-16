@@ -104,7 +104,7 @@ function buildMatchGrid() {
       <div class="card-summary">${match.summary}</div>
       <div class="card-moments-count">🦋 ${match.moments.length} butterfly moment${match.moments.length>1?'s':''}</div>
     `;
-    card.addEventListener('click', () => { location.hash = '#/match/' + match.id; });
+    card.addEventListener('click', () => { navigate('#/match/' + match.id); });
     grid.appendChild(card);
   });
 }
@@ -126,7 +126,7 @@ async function loadCommunityStrip() {
         <div class="community-card-headline">${esc(s.headline || '')}</div>
         <div class="community-card-cta">Enter this universe →</div>
       `;
-      card.addEventListener('click', () => { location.hash = '#/shared/' + s.id; });
+      card.addEventListener('click', () => { navigate('#/shared/' + s.id); });
       row.appendChild(card);
     });
     strip.classList.remove('hidden');
@@ -180,15 +180,14 @@ function setupDailyCard() {
   document.getElementById('daily-q').textContent = moment.what;
   document.getElementById('daily-headline').textContent =
     `${match.team1} vs ${match.team2}, ${match.year} — "${moment.headline}"`;
-  card.addEventListener('click', () => { location.hash = '#/twist/' + moment.id; });
+  card.addEventListener('click', () => { navigate('#/twist/' + moment.id); });
 }
 
 // ── Surprise me: random butterfly moment ──────────────
 function surpriseMe() {
   const match  = MATCHES[Math.floor(Math.random() * MATCHES.length)];
   const moment = match.moments[Math.floor(Math.random() * match.moments.length)];
-  if ('#/twist/' + moment.id === location.hash) { route(); return; }
-  location.hash = '#/twist/' + moment.id;
+  navigate('#/twist/' + moment.id);
 }
 
 // ── Match → Moments ───────────────────────────────────
@@ -217,7 +216,7 @@ function selectMatch(match) {
       </div>
       <div class="moment-arrow">→</div>
     `;
-    card.addEventListener('click', () => { location.hash = '#/twist/' + moment.id; });
+    card.addEventListener('click', () => { navigate('#/twist/' + moment.id); });
     list.appendChild(card);
   });
   showScreen('screen-moments');
@@ -677,7 +676,7 @@ function buildDebates() {
 
     if (related) {
       card.querySelector('.debate-moment-link').addEventListener('click', () => {
-        location.hash = '#/twist/' + related.moment.id;
+        navigate('#/twist/' + related.moment.id);
       });
     }
 
@@ -747,7 +746,7 @@ function buildMoreCards(currentId) {
       <div class="more-card-match">${match.team1} vs ${match.team2}, ${match.year}</div>
       <div class="more-card-moment">${moment.what}</div>
     `;
-    card.addEventListener('click', () => { location.hash = '#/story/' + moment.id; window.scrollTo(0,0); });
+    card.addEventListener('click', () => { navigate('#/story/' + moment.id); window.scrollTo(0,0); });
     grid.appendChild(card);
   });
 }
@@ -1013,6 +1012,13 @@ function route() {
 }
 window.addEventListener('hashchange', route);
 
+// Setting location.hash to its current value fires no hashchange —
+// navigate() guarantees the router runs either way.
+function navigate(hash) {
+  if (location.hash === hash) route();
+  else location.hash = hash;
+}
+
 function initRouting() {
   // Legacy share links (?moment= / ?story=) → hash routes
   const params  = new URLSearchParams(location.search);
@@ -1045,19 +1051,19 @@ function setupCharCounters() {
 const SCREEN_ROUTES = { 'screen-hero': '#/', 'screen-matches': '#/matches', 'screen-custom': '#/custom', 'screen-debates': '#/debates' };
 
 function setupNav() {
-  document.getElementById('btn-legendary').addEventListener('click', ()=>{ location.hash = '#/matches'; });
-  document.getElementById('btn-custom').addEventListener('click', ()=>{ location.hash = '#/custom'; });
+  document.getElementById('btn-legendary').addEventListener('click', ()=>navigate('#/matches'));
+  document.getElementById('btn-custom').addEventListener('click', ()=>navigate('#/custom'));
   document.getElementById('btn-surprise')?.addEventListener('click', surpriseMe);
-  document.getElementById('btn-debates')?.addEventListener('click', () => { location.hash = '#/debates'; });
-  document.querySelectorAll('[data-to]').forEach(btn=>btn.addEventListener('click',()=>{ location.hash = SCREEN_ROUTES[btn.dataset.to] || '#/'; }));
-  document.getElementById('nav-custom-btn').addEventListener('click',()=>{ location.hash = '#/custom'; });
+  document.getElementById('btn-debates')?.addEventListener('click', () => navigate('#/debates'));
+  document.querySelectorAll('[data-to]').forEach(btn=>btn.addEventListener('click',()=>navigate(SCREEN_ROUTES[btn.dataset.to] || '#/')));
+  document.getElementById('nav-custom-btn').addEventListener('click',()=>navigate('#/custom'));
   document.getElementById('btn-reveal').addEventListener('click', () => {
     if (isCustom) revealStory();
-    else if (currentMoment) location.hash = '#/story/' + currentMoment.id;
+    else if (currentMoment) navigate('#/story/' + currentMoment.id);
   });
   document.getElementById('story-back-btn').addEventListener('click',()=>{
-    if (isCustom) location.hash = customData?.momentId?.startsWith('shared-') ? '#/' : '#/custom';
-    else location.hash = currentMatch ? '#/match/' + currentMatch.id : '#/matches';
+    if (isCustom) navigate(customData?.momentId?.startsWith('shared-') ? '#/' : '#/custom');
+    else navigate(currentMatch ? '#/match/' + currentMatch.id : '#/matches');
   });
   document.getElementById('btn-generate-custom').addEventListener('click', generateCustomStory);
   document.getElementById('share-btn').addEventListener('click', share);
