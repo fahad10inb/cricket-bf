@@ -288,7 +288,7 @@ function buildUeWave() {
     // the edge: bars near the cursor's mid-sweep spike green
     if (i >= 19 && i <= 22) {
       b.classList.add('spike');
-      b.style.setProperty('--d', (0.68 + (i - 19) * 0.045) + 's');
+      b.style.setProperty('--d', (1.05 + (i - 19) * 0.05) + 's');
     }
     w.appendChild(b);
   }
@@ -303,12 +303,12 @@ function universeTransition() {
       UNI_LINES[Math.floor(Math.random() * UNI_LINES.length)];
     ov.classList.remove('verdict');
     ov.classList.add('show');
-    setTimeout(() => ov.classList.add('verdict'), 1450);      // stamp: OVERTURNED
+    setTimeout(() => ov.classList.add('verdict'), 2300);      // stamp: OVERTURNED
     setTimeout(() => {
       ov.classList.remove('show');
       setTimeout(() => ov.classList.remove('verdict'), 300);   // reset after fade
       resolve();
-    }, 2400);
+    }, 3600);
   });
 }
 
