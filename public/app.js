@@ -147,6 +147,27 @@ function setupMatchSearch() {
   });
 }
 
+// ── Ghost headlines: other universes leaking into the hero flanks ──
+function setupHeroGhosts() {
+  const left  = document.getElementById('hero-ghosts-left');
+  const right = document.getElementById('hero-ghosts-right');
+  if (!left || !right) return;
+  const all = [];
+  MATCHES.forEach(m => m.moments.forEach(mo => all.push({ year: m.year, headline: mo.headline })));
+  const picks = all.sort(() => Math.random() - 0.5).slice(0, 6);
+  const tops = [6, 38, 66];
+  picks.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'ghost';
+    el.style.top = (tops[i % 3] + Math.random() * 8) + '%';
+    el.style.setProperty('--rot', ((Math.random() * 10) - 5).toFixed(1) + 'deg');
+    el.style.setProperty('--dur', (14 + Math.random() * 8).toFixed(1) + 's');
+    el.style.setProperty('--del', (-Math.random() * 12).toFixed(1) + 's');
+    el.innerHTML = `<div class="ghost-year">UNIVERSE ${p.year}-B</div><div class="ghost-headline">${esc(p.headline)}</div>`;
+    (i < 3 ? left : right).appendChild(el);
+  });
+}
+
 // ── Today's Butterfly Moment (rotates daily, same for everyone) ──
 function setupDailyCard() {
   const card = document.getElementById('daily-card');
@@ -1049,6 +1070,7 @@ setupCharCounters();
 setupVoting();
 setupMatchSearch();
 setupDailyCard();
+setupHeroGhosts();
 buildMatchGrid();
 checkHealth();
 initRouting();

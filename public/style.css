@@ -315,6 +315,47 @@ body {
 /* pitch art — retired: read as a smudge on bright screens, not a pitch */
 .pitch-art { display: none; }
 
+/* ── Ghost headlines: other universes on the hero flanks (wide screens) ── */
+.hero-ghosts {
+  display: none;
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 23vw;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-ghosts.right { left: auto; right: 0; }
+@media (min-width: 1100px) {
+  .hero-ghosts { display: block; }
+}
+.ghost {
+  position: absolute;
+  left: 12%;
+  max-width: 250px;
+  transform: rotate(var(--rot, 0deg));
+  animation: ghostFloat var(--dur, 16s) ease-in-out var(--del, 0s) infinite alternate;
+}
+.hero-ghosts.right .ghost { left: auto; right: 12%; text-align: right; }
+.ghost-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: rgba(245, 200, 66, 0.22);
+  margin-bottom: 0.35rem;
+}
+.ghost-headline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: rgba(150, 150, 190, 0.18);
+}
+@keyframes ghostFloat {
+  from { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+  to   { transform: translateY(12px)  rotate(var(--rot, 0deg)); }
+}
+
 /* ══════════════════════════════════════════
    TOP NAV (shared)
 ══════════════════════════════════════════ */
