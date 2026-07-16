@@ -284,6 +284,34 @@ body {
 
 .full-width { width: 100%; }
 
+/* ── Desktop / laptop hero: everything must fit one viewport ── */
+@media (min-width: 641px) {
+  .hero-content { padding: 1.2rem 2rem; }
+  .hero-eyebrow { margin-bottom: 1.1rem; }
+  .hero-title {
+    font-size: clamp(3.2rem, 19vmin, 8rem);
+    margin-bottom: 0.9rem;
+  }
+  .hero-sub { font-size: 1.05rem; margin-bottom: 1.3rem; }
+  .hero-sub br { display: none; } /* one line on wide screens */
+  .daily-card { margin-bottom: 1.3rem; padding: 0.85rem 1.15rem; }
+  .daily-q { font-size: 1rem; margin-bottom: 0.35rem; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline { padding: 0.85rem 2rem; font-size: 0.95rem; }
+  .hero-btns-mini { margin-top: 0.7rem; }
+  .hero-ticker { margin: 1.3rem 0 0.2rem; font-size: 0.74rem; }
+  .hero-server-row { margin-top: 0.8rem; }
+}
+
+/* very short laptop windows (small screens, browser chrome) */
+@media (min-width: 641px) and (max-height: 720px) {
+  .hero-title { font-size: clamp(2.8rem, 15vmin, 5.5rem); }
+  .hero-eyebrow { margin-bottom: 0.7rem; }
+  .daily-headline { display: none; } /* keep the card compact */
+  .hero-ticker { display: none; }
+  .pitch-art { display: none; }
+}
+
 /* pitch art */
 .pitch-art {
   position: absolute;
