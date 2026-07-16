@@ -1,6 +1,6 @@
 # 🦋 Cricket Butterfly Effect — Launch Posts
 
-> Replace `[APP-URL]` everywhere once deployed. Attach the images noted per post.
+> Replace `https://cricket-bf.vercel.app` everywhere once deployed. Attach the images noted per post.
 > Images live in this folder: `ig-card-gibbs.png`, `ig-card-dhoni.png` (+ `../public/og-image.png` used automatically by link previews).
 
 ---
@@ -23,7 +23,7 @@ So I built a thing: pick one legendary moment, flip it, and it shows you the alt
 
 There are 38 legendary matches in there (Bodyline 1933 → Barbados 2024, including the 2019 final, the 438 game, the Gabba, Miandad's six), or you can create your own what-if and AI writes the timeline. There's also a Great Debates section where you can vote on the arguments we all have anyway (would Bradman average 99 today?).
 
-It's free, no signup, built for fun: [APP-URL]
+It's free, no signup, built for fun: https://cricket-bf.vercel.app
 
 Would genuinely love to hear which moment you'd rewrite — I'll add the most requested ones.
 
@@ -46,7 +46,7 @@ A few things I learned building it:
 → Structured JSON output turns one AI call into a whole multi-part experience (commentary + scoreboard + reactions + story)
 → The feature people love most (rewritten record books) came from reading what fans argue about online, not from my roadmap
 
-Try it (free, no signup): [APP-URL]
+Try it (free, no signup): https://cricket-bf.vercel.app
 
 Which moment would you rewrite? 👇
 
