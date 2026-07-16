@@ -189,7 +189,7 @@ function setupHeroGhosts() {
   const right = document.getElementById('hero-ghosts-right');
   if (!left || !right) return;
   const all = [];
-  MATCHES.forEach(m => m.moments.forEach(mo => all.push({ year: m.year, headline: mo.headline })));
+  MATCHES.forEach(m => m.moments.forEach(mo => all.push({ year: m.year, headline: mo.headline, id: mo.id })));
   const picks = all.sort(() => Math.random() - 0.5).slice(0, 6);
   const tops = [6, 38, 66];
   picks.forEach((p, i) => {
@@ -200,6 +200,8 @@ function setupHeroGhosts() {
     el.style.setProperty('--dur', (14 + Math.random() * 8).toFixed(1) + 's');
     el.style.setProperty('--del', (-Math.random() * 12).toFixed(1) + 's');
     el.innerHTML = `<div class="ghost-year">UNIVERSE ${p.year}-B</div><div class="ghost-headline">${esc(p.headline)}</div>`;
+    // the whispers are doors — click one to enter that universe
+    el.addEventListener('click', () => navigate('#/twist/' + p.id));
     (i < 3 ? left : right).appendChild(el);
   });
 }

@@ -104,7 +104,11 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
-  filter: drop-shadow(0 0 40px rgba(245,200,66,0.4));
+  animation: ifBreathe 4.5s ease-in-out infinite;
+}
+@keyframes ifBreathe {
+  0%, 100% { filter: drop-shadow(0 0 40px rgba(245,200,66,0.35)); }
+  50%      { filter: drop-shadow(0 0 55px rgba(245,200,66,0.6)); }
 }
 
 .hero-sub {
@@ -617,7 +621,7 @@ body {
   position: absolute;
   top: 0; bottom: 0; left: 0;
   width: 23vw;
-  pointer-events: none;
+  pointer-events: none; /* container passes through; the ghosts themselves are doors */
   z-index: 1;
 }
 .hero-ghosts.right { left: auto; right: 0; }
@@ -630,7 +634,11 @@ body {
   max-width: 250px;
   transform: rotate(var(--rot, 0deg));
   animation: ghostFloat var(--dur, 16s) ease-in-out var(--del, 0s) infinite alternate;
+  pointer-events: auto;   /* each whisper is a door into that universe */
+  cursor: pointer;
+  transition: filter 0.35s ease;
 }
+.ghost:hover { filter: brightness(3.2); animation-play-state: paused; }
 .hero-ghosts.right .ghost { left: auto; right: 12%; text-align: right; }
 .ghost-year {
   font-family: 'Space Mono', monospace;
