@@ -320,7 +320,15 @@ body {
 ══════════════════════════════════════════ */
 body.intro .hero-eyebrow    { animation: introFade 0.5s ease 4.45s backwards; }
 body.intro .hero-title em   { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.55s backwards; }
-body.intro .hero-title span { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.7s backwards; }
+body.intro .hero-title span {
+  animation:
+    introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.7s backwards,
+    titleIgnite 1.5s ease-out 4.7s backwards; /* inherits the coin's light */
+}
+@keyframes titleIgnite {
+  0%   { filter: drop-shadow(0 0 75px rgba(245,200,66,0.95)); }
+  100% { filter: drop-shadow(0 0 40px rgba(245,200,66,0.4)); }
+}
 body.intro .hero-sub        { animation: introFade 0.5s ease 4.9s backwards; }
 body.intro .daily-card      { animation: introRise 0.5s ease 5.0s backwards; }
 body.intro .hero-btns       { animation: introRise 0.5s ease 5.1s backwards; }
@@ -496,8 +504,8 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 .toss-overlay.phase-split .split-coin.if { animation: splitIf 0.8s cubic-bezier(0.5, 0.05, 0.6, 1) both; }
 @keyframes splitIf {
   0%   { transform: translate(0, 0) rotate(0deg); }
-  45%  { transform: translate(11vw, 16vh) rotate(240deg); }
-  100% { transform: translate(0, 34vh) rotate(480deg); }
+  45%  { transform: translate(12vw, -2vh) rotate(240deg); }
+  100% { transform: translate(0, 7vh) rotate(480deg); }
 }
 .toss-seam {
   position: absolute;
@@ -517,12 +525,18 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 /* Beat 5 — impact: flash, shockwave, the universe arrives */
 .toss-overlay.phase-land .split-coin.if { animation: coinSettle 0.4s ease-out both; }
 @keyframes coinSettle {
-  0%   { transform: translate(0, 34vh) rotate(480deg) scale(1.18); }
-  100% { transform: translate(0, 34vh) rotate(480deg) scale(1); }
+  0%   { transform: translate(0, 7vh) rotate(480deg) scale(1.18); }
+  100% { transform: translate(0, 7vh) rotate(480deg) scale(1); }
+}
+/* the hand-off: the coin dissolves into the golden "If?" of the title */
+.toss-overlay.fade .split-coin.if { animation: coinBecomeTitle 0.55s ease-in both; }
+@keyframes coinBecomeTitle {
+  0%   { transform: translate(0, 7vh) rotate(480deg) scale(1);   opacity: 1; filter: blur(0); }
+  100% { transform: translate(0, 7vh) rotate(500deg) scale(2.4); opacity: 0; filter: blur(14px); }
 }
 .toss-ring {
   position: absolute;
-  left: 50%; top: calc(50% + 21vh);
+  left: 50%; top: calc(50% - 6vh);
   width: 44px; height: 44px;
   translate: -50% -50%;
   border: 2px solid rgba(245,200,66,0.8);
@@ -537,7 +551,7 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.4s backwards; }
 .toss-flash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 71%, rgba(255,240,190,0.95), transparent 55%);
+  background: radial-gradient(circle at 50% 42%, rgba(255,240,190,0.95), transparent 55%);
   opacity: 0;
   pointer-events: none;
 }
