@@ -264,12 +264,40 @@ async function generateCustomStory() {
   showScreen('screen-twist');
 }
 
+// ── Universe crossing transition ──────────────────────
+const UNI_LINES = [
+  'The bowler turns at the top of his mark...',
+  'Rewinding the tape to the exact delivery...',
+  'The butterfly lands on a good length...',
+  'Third umpire is checking the multiverse...',
+  'One ball. Two universes.',
+  'Crossing the boundary between timelines...',
+  'The crowd holds its breath — again...',
+  'Somewhere, a scorer picks up a different pen...'
+];
+
+function universeTransition() {
+  return new Promise(resolve => {
+    const ov = document.getElementById('universe-overlay');
+    if (!ov) return resolve();
+    document.getElementById('uni-line').textContent =
+      UNI_LINES[Math.floor(Math.random() * UNI_LINES.length)];
+    ov.classList.add('show');
+    setTimeout(() => { ov.classList.remove('show'); resolve(); }, 1600);
+  });
+}
+
 // ── Reveal Story ──────────────────────────────────────
 async function revealStory() {
   // Guard: must have a match/moment or custom data
   if (!isCustom && (!currentMatch || !currentMoment)) {
     console.error('No match/moment selected'); return;
   }
+
+  // Cricket-themed crossing for instant reveals; AI generations
+  // get the dedicated loading overlay instead (never both)
+  const willGenerate = isCustom && customData && customData.story === null;
+  if (!willGenerate) await universeTransition();
 
   if (isCustom && customData && customData.story === null) {
     showLoading();
