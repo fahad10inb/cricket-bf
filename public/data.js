@@ -1,6 +1,6 @@
 // =====================================================
 // CRICKET BUTTERFLY EFFECT — MATCH DATA
-// 38 matches · 53 moments · dossiers + records · fact-checked
+// Flagship six first, then chronological · dossiers + records · fact-checked
 // =====================================================
 
 const MATCHES = [
@@ -2974,6 +2974,84 @@ const MATCHES = [
     ]
   },
   {
+    "id": "ipl2008-final",
+    "year": "2008",
+    "tournament": "IPL Final · DY Patil Stadium, Navi Mumbai",
+    "team1": "Rajasthan Royals",
+    "team2": "Chennai Super Kings",
+    "accentColor": "#8f2d56",
+    "summary": "The inaugural IPL final. Shane Warne's unfancied Rajasthan Royals — the cheapest squad in the league — chased 164 against Dhoni's Chennai Super Kings and won off the very last ball, Sohail Tanvir scrambling the single that sealed the fairytale.",
+    "realResult": "Rajasthan Royals won by 3 wickets off the last ball. Yusuf Pathan hit 56, and with one needed off the final delivery, Sohail Tanvir squeezed Balaji away and scrambled home. Warne's underdogs took the first IPL crown.",
+    "moments": [
+      {
+        "id": "ipl2008-tanvir-single",
+        "icon": "🏃",
+        "label": "The Single",
+        "what": "What if Sohail Tanvir's last-ball single had failed?",
+        "desc": "One run needed off the final ball of the first IPL season. Tanvir squeezed it into the off side and sprinted. What if the throw had beaten him home?",
+        "realMoment": "Needing one off the final ball of Balaji's over, Sohail Tanvir squeezed it away and scrambled the single. Rajasthan Royals — the league's cheapest squad — won the first IPL title by 3 wickets.",
+        "altMoment": "Raina swoops at backward point and throws down the stumps. Tanvir is run out inches short, the final is tied at 163, and the first IPL title goes to a bowl-out.",
+        "headline": "RAINA'S DIRECT HIT SINKS THE ROYALS — CHENNAI WIN FIRST IPL IN BOWL-OUT DRAMA",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Was Warne's fairytale always hanging by six inches?",
+        "ripples": [
+          "Tanvir's dive falls six inches short — the first IPL final ends in a tie, and CSK win the bowl-out 3-1",
+          "Dhoni's dynasty starts in season one: six IPL titles in this universe, and Chennai never lets anyone forget it",
+          "Warne's project ends without a trophy; the 'moneyball' Royals become the league's great romantic footnote",
+          "Rajasthan Royals remain the only inaugural finalist never to lift the IPL",
+          "Yusuf Pathan's 56 is forgotten; Raina's one-handed pickup becomes the league's first immortal highlight"
+        ],
+        "story": [
+          "Season one had been a circus — cheerleaders, Bollywood owners, million-dollar auctions — but the final at DY Patil distilled it into pure sport. Shane Warne's Rajasthan Royals, the cheapest squad in the league, needed eight off Lakshmipathy Balaji's final over to beat Dhoni's Chennai Super Kings. Yusuf Pathan's 56 had kept the misfits alive all evening. Now, with the scores nearly level, it came down to a Pakistani seamer with a slingshot action and a batting average nobody had bothered to check.",
+          "One needed off the last ball. Balaji went full, and Sohail Tanvir carved it toward backward point — exactly as he did in the universe we know. But here the ball travelled six inches closer to Suresh Raina. He swooped, gathered one-handed, and threw down the striker's end with Tanvir's dive a heartbeat late. The third umpire took ninety seconds. Red light. Run out. Scores tied at 163 apiece, and the inaugural IPL final had refused to end.",
+          "Under season one's playing conditions, a tie meant a bowl-out — five bowlers apiece at an unguarded set of stumps. Dhoni had been here before; eight months earlier in Durban he had won a World Cup bowl-out against Pakistan, and he ran this one the same way, tossing the ball to his calmest hitters of a length. Chennai struck three times. Rajasthan, drained and disbelieving, managed one. Warne, the greatest bowler of his age, watched his own delivery slide past off stump.",
+          "Dhoni lifted the first IPL trophy at midnight, and the dynasty arrived two years early. Chennai's yellow empire would now trace its origin not to 2010 but to the very first evening of the format's history. Warne gathered his young Royals in the dressing room — Pathan, Jadeja, Asnodkar, kids he had turned into believers — and told them they had already changed cricket. It was true. It also wasn't enough. Fairytales, he knew better than anyone, are graded on their endings.",
+          "Rajasthan never did win one. The franchise that proved a league could be won on brains rather than budget became instead its great romantic footnote — the team that fell one dive short. Tanvir still took the Purple Cap home to Rawalpindi, but the photograph everyone remembers is his outstretched bat, six inches from glory. And in Chennai they still argue, happily, over which of Dhoni's six titles mattered most. The first, they always answer. The one Warne almost stole."
+        ],
+        "dossier": {
+          "commentary": "One to win, Balaji fires it in full — Tanvir slices toward point — Raina's onto it, one stump to aim at... DIRECT HIT! He's short! HE'S SHORT! The first IPL final is TIED, and we are going to a bowl-out at DY Patil!",
+          "channel": "SET Max — IPL Season One, Live from DY Patil",
+          "scoreline": "CSK 163/5 (20) tied RR 163/8 (20) — CSK won the bowl-out 3-1. Raina 43; Pathan 56, Tanvir run out",
+          "socials": [
+            {
+              "handle": "@JaipurJadoogar",
+              "text": "Warne turned a bunch of unknowns into finalists and one dive undid it all. Keeping the pink-and-blue jersey on forever anyway.",
+              "likes": "12.4K"
+            },
+            {
+              "handle": "@WhistlePoduOG",
+              "text": "First season. First trophy. A BOWL-OUT. Dhoni stood at the stumps like he'd already seen the future. Yellove forever.",
+              "likes": "23.8K"
+            },
+            {
+              "handle": "@MarwariCoverDrive",
+              "text": "We lost an IPL final by six inches and a third umpire. Cricket invented a brand new way to hurt people in its very first year.",
+              "likes": "9.7K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Rajasthan Royals' IPL titles",
+              "reality": "1 (2008) — the inaugural crown, never repeated",
+              "alternate": "0 — the fairytale dies at the last ball"
+            },
+            {
+              "label": "CSK's IPL titles",
+              "reality": "5 (2010, 2011, 2018, 2021, 2023)",
+              "alternate": "6 — the dynasty begins in season one"
+            },
+            {
+              "label": "Sohail Tanvir's 2008",
+              "reality": "Purple Cap (22 wickets) and the winning run",
+              "alternate": "Purple Cap winner, run out to lose the final"
+            }
+          ],
+          "retro": "Somewhere in Jaipur there is still a frame of Tanvir's dive, hung one ball short of forever."
+        }
+      }
+    ]
+  },
+  {
     "id": "ashes2013-trent-bridge",
     "year": "2013",
     "tournament": "Ashes 1st Test · Trent Bridge, Nottingham",
@@ -3047,6 +3125,84 @@ const MATCHES = [
               "alternate": "Never happens — he's applauded instead"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "ct2013-final",
+    "year": "2013",
+    "tournament": "ICC Champions Trophy Final · Edgbaston, Birmingham",
+    "team1": "India",
+    "team2": "England",
+    "accentColor": "#713f12",
+    "summary": "Rain shrank what was billed as the last Champions Trophy final to twenty overs a side. India scratched out 129/7, England needed 20 from 16 with six wickets standing — and then Ishant Sharma bowled the strangest, greatest over of his life.",
+    "realResult": "India won by 5 runs. England, needing 20 off 16 balls, lost Morgan and Bopara to Ishant Sharma in consecutive deliveries and closed on 124/8. MS Dhoni became the only captain to win all three ICC trophies.",
+    "moments": [
+      {
+        "id": "2013-ishant-double",
+        "icon": "🎯",
+        "label": "The Double Strike",
+        "what": "What if Ishant Sharma's double-strike over never happened?",
+        "desc": "Ishant had just bowled two wides and looked finished. Then two slower balls removed Morgan and Bopara in the space of a heartbeat, and a final England had all but won turned upside down.",
+        "realMoment": "With England needing 20 off 16, Ishant — wayward all evening — got Eoin Morgan to miscue a slower ball to Ashwin at midwicket, then had Ravi Bopara caught pulling the very next delivery. A 64-run stand, gone in two balls.",
+        "altMoment": "The slower ball sits up and Morgan launches it into the Hollies Stand. Twenty from sixteen becomes a stroll, and England's long wait for a global one-day title ends at Edgbaston.",
+        "headline": "MORGAN ENDS ENGLAND'S WAIT — CHAMPIONS TROPHY WON IN THE BIRMINGHAM RAIN",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Did two slower balls decide whether Dhoni or English cricket got its coronation?",
+        "ripples": [
+          "Morgan finishes unbeaten; England lift their first global 50-over title six years before the 2019 miracle",
+          "Dhoni retires with two ICC trophies from three — the unique treble never exists",
+          "Alastair Cook, a Champions Trophy-winning captain, keeps the one-day job — and the Morgan revolution may never be needed",
+          "The 'last' Champions Trophy bows out with the hosts as champions, and perhaps stays buried",
+          "Jadeja's golden summer loses its final flourish; Dhawan's player-of-the-tournament medal arrives in defeat"
+        ],
+        "story": [
+          "It had rained on Birmingham all day, the way it only rains on English finals. The last Champions Trophy — for that is what everyone called it, the tournament already measured for its coffin — had been squeezed into twenty overs a side. India, unbeaten all fortnight, managed just 129 for 7, Kohli's 43 a lone act of craft on a pitch that gripped and spat. England, chasing their first global one-day title, stumbled early and then found Eoin Morgan and Ravi Bopara.",
+          "Their stand was worth 64 when the equation ticked down to twenty needed from sixteen balls, six wickets standing. Dhoni threw the ball to Ishant Sharma, who had sprayed two wides in the over already and wore the look of a man asked to defuse a bomb with oven gloves. The slower ball came out again. In our universe, Morgan miscued it to midwicket. In this one, it sat up an inch higher — and Morgan buried it in the Hollies Stand.",
+          "The stand roared the roof off the sky. Fourteen from fifteen now, and the game had no twist left in it. Bopara dabbed and scampered, Morgan carved wide of point, and Edgbaston counted the runs down like a crowd at a rocket launch. When the winning single came with five balls unused, Morgan simply closed his eyes and raised both arms into the drizzle — an Irishman delivering England's first global one-day prize.",
+          "Alastair Cook lifted the trophy beneath a tarpaulin sky, and the geometry of two cricketing futures quietly shifted. There would be no winter coup now, no white-ball revolution born of humiliation — the methods that won a rain-shortened shootout in 2013 would be defended for years. Somewhere down that road, the miracle of 2019 becomes a question mark. English cricket got its trophy early, and perhaps paid for it later.",
+          "And Dhoni? He walked off with the smallest of shrugs, a man who had already won everything else. But the ledger in that universe stays forever incomplete: World T20, World Cup, and a blank where Edgbaston should be. No captain ever holds all three ICC trophies. The most quietly astonishing line on the most quietly astonishing CV in cricket is never written — because one slower ball sat up an inch too high in the Birmingham murk."
+        ],
+        "dossier": {
+          "commentary": "Ishant drops another slower ball in and Morgan's read it early — that is MILES over midwicket and into the Hollies Stand! Edgbaston erupts — fourteen needed, and the trophy is coming home!",
+          "channel": "Sky Sports — Live from Edgbaston",
+          "scoreline": "ENGLAND 130/4 (19.1) beat INDIA 129/7 (20) by 6 wickets — Morgan 45*, Bopara 33*",
+          "socials": [
+            {
+              "handle": "@HolliesStandHowl",
+              "text": "Soaked since 10am, watched a 50-over final shrink into a T20, and Eoin Morgan just made it the greatest Sunday of my life.",
+              "likes": "19.7K"
+            },
+            {
+              "handle": "@RanchiRainDance",
+              "text": "We dragged them into a 20-over shootout, defended like lions, and the slower ball STILL disappears. Some trophies just aren't written for you.",
+              "likes": "24.3K"
+            },
+            {
+              "handle": "@DuckworthLouis",
+              "text": "A global final decided over twenty overs because of rain and it still produced THAT. Never change, English summer. Actually, please change.",
+              "likes": "15.2K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Dhoni's ICC set",
+              "reality": "The only captain to win all three ICC trophies (2007, 2011, 2013)",
+              "alternate": "Two from three — the treble forever incomplete"
+            },
+            {
+              "label": "England's first global 50-over title",
+              "reality": "The 2019 World Cup, won on boundary count at Lord's",
+              "alternate": "The 2013 Champions Trophy, won in a rain-shortened dash"
+            },
+            {
+              "label": "The 'last' Champions Trophy",
+              "reality": "It survived the axe — Pakistan won it in 2017, India again in 2025",
+              "alternate": "Buried a champion's death, with England holding it forever"
+            }
+          ],
+          "retro": "In that universe the montage ends not with Dhoni's half-smile, but with Morgan on the Edgbaston balcony, holding the trophy England were never supposed to have to wait for."
         }
       }
     ]
@@ -3352,6 +3508,150 @@ const MATCHES = [
     ]
   },
   {
+    "id": "ipl2016-final",
+    "year": "2016",
+    "tournament": "IPL Final · M. Chinnaswamy Stadium, Bengaluru",
+    "team1": "Royal Challengers Bangalore",
+    "team2": "Sunrisers Hyderabad",
+    "accentColor": "#7a1212",
+    "summary": "Kohli's impossible 973-run season carried RCB to a home final against Warner's Sunrisers. Ben Cutting's late blast pushed SRH to 208, Gayle and Kohli replied with 114 inside eleven overs, and the Chinnaswamy dared to believe — until RCB fell 8 runs short.",
+    "realResult": "Sunrisers Hyderabad won by 8 runs — 208/7 (Warner 69, Cutting 39* off 15) against RCB's 200/7 (Gayle 76, Kohli 54). SRH's first title; RCB's drought rolled on for nine more seasons.",
+    "moments": [
+      {
+        "id": "ipl2016-gayle-kohli-charge",
+        "icon": "⚡",
+        "label": "The Charge",
+        "what": "What if Gayle and Kohli's charge had carried RCB all the way home?",
+        "desc": "Chasing 209, Gayle and Kohli put on 114 inside eleven overs. The Chinnaswamy was shaking. Then both fell, and 8 runs stayed forever out of reach. What if the two of them had simply finished it?",
+        "realMoment": "Gayle (76 off 38) and Kohli (54 off 35) raced to 114 without loss, but both fell in the middle overs and RCB's chase died 8 runs short at 200/7.",
+        "altMoment": "Gayle bats on to a 48-ball hundred and Kohli stays until the winning run. RCB run down 209 with two balls to spare, and the Chinnaswamy erupts for its first title.",
+        "headline": "GAYLE STORM DELIVERS THE CUP — KOHLI'S 973-RUN SEASON CROWNED AT THE CHINNASWAMY",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Did the greatest individual season in T20 history deserve a different ending that night?",
+        "ripples": [
+          "Gayle falls for 104 with twelve needed; Kohli laces the winning boundary on 71 not out with two balls left",
+          "RCB's first title arrives in 2016, not 2025 — nine years of 'Ee Sala Cup Namde' jokes never exist",
+          "Kohli's 973-run season becomes the most decorated in T20 history: Orange Cap, title, final-winning knock",
+          "SRH never win an IPL; Warner's redemption song is postponed indefinitely",
+          "AB de Villiers's trophy cabinet finally gets its IPL medal — the one gap in his legacy, closed"
+        ],
+        "story": [
+          "The equation was outrageous and the building believed it anyway. Two hundred and nine to win, at home, at the end of a season in which Virat Kohli had scored 973 runs — a number from a video game. Chris Gayle, written off all fortnight, met the new ball like an old grievance. Fifty came inside five overs, the hundred partnership soon after. The Chinnaswamy, a concrete drum in the middle of a city that had waited nine seasons, began to shake.",
+          "In the universe we know, the charge broke — Gayle out for 76, Kohli for 54, and eight runs left unclaimed forever. Here, the leading edge that hung in the Bengaluru sky found grass instead of a fielder's palms. Gayle, reprieved, did what Gayle does to reprieves. The next over disappeared for twenty. When his hundred came, off 48 balls, he did not smile. There was, his eyes said plainly, a job still only half-finished.",
+          "Kohli batted like the season itself — inevitable, furious, strangely calm. He had made four hundreds already that summer; now he made something harder, an unbeaten 71 in a final with a whole city on his shoulders. Warner rotated his bowlers desperately. Mustafizur's cutters, Bhuvneshwar's yorkers, Cutting's cross-seamers — all of it arrived at two men who had decided, privately and together, that the drought ended tonight. The required rate never climbed out of reach.",
+          "Gayle fell for 104 with twelve still needed, and for four balls the old dread crept back into the stands. Kohli refused it entry. The winning runs came with two balls to spare, laced through cover, and he sank to his knees at the striker's end and wept — the same tears he shed in the other universe, repurposed. AB de Villiers hurdled the balcony railing. Gayle arrived from the dugout and lifted him off the turf like luggage.",
+          "History reorganised itself around that night. Kohli's 973 became the most decorated season in T20 history — Orange Cap, title, final-winning knock — instead of its most beautiful ruin. RCB never became a punchline, so 2025 was a second star rather than a first exhale. And in Hyderabad, David Warner's men were left to wonder how 208 in a final could ever be eight runs too few. In this universe, it simply was."
+        ],
+        "dossier": {
+          "commentary": "Kohli threads the cover field — that's it, THAT IS IT! Royal Challengers Bangalore are champions of the IPL, and the man with 973 runs this season is on his knees at the Chinnaswamy! Nine years of waiting, gone in one swing of the bat!",
+          "channel": "Sony Max — IPL Final, Live from the Chinnaswamy",
+          "scoreline": "RCB 209/1 (19.4) beat SRH 208/7 (20) by 9 wickets — Gayle 104, Kohli 71*; Warner 69",
+          "socials": [
+            {
+              "handle": "@EeSalaCupNamde16",
+              "text": "NINE YEARS. I have cried at this ground for nine years and tonight the tears finally taste different. CUP. NAMDE.",
+              "likes": "88.2K"
+            },
+            {
+              "handle": "@HyderabadiHalwa",
+              "text": "208 in a final and it wasn't enough. Gayle you absolute hurricane. I genuinely don't know what bowling is supposed to do about that.",
+              "likes": "31.5K"
+            },
+            {
+              "handle": "@ChinnaswamyDecibel",
+              "text": "My phone's sound meter read 114 decibels when Kohli hit that cover drive. Then the app crashed. So did I.",
+              "likes": "47.9K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Kohli's 2016 — 973 runs",
+              "reality": "Still the IPL single-season record, but trophyless",
+              "alternate": "Crowned with the title on the same night"
+            },
+            {
+              "label": "RCB's IPL titles",
+              "reality": "1 (2025) — after an 18-year wait",
+              "alternate": "2 (2016, 2025)"
+            },
+            {
+              "label": "SRH's IPL titles",
+              "reality": "1 (2016)",
+              "alternate": "0 — still waiting"
+            }
+          ],
+          "retro": "For once, the greatest season anyone ever had was allowed to end the way it deserved."
+        }
+      },
+      {
+        "id": "ipl2016-cutting-cameo",
+        "icon": "🔨",
+        "label": "The Cameo",
+        "what": "What if Ben Cutting's 39* cameo never happened?",
+        "desc": "SRH were drifting late in their innings when Ben Cutting arrived and smashed 39 not out off 15 balls, dragging 208 out of the night. Take away those blows, and RCB are chasing something altogether friendlier.",
+        "realMoment": "Cutting hammered 39* off 15 — including a monstrous six off Shane Watson — lifting SRH from a good total to a towering 208/7. He took two wickets as well and was named Man of the Match.",
+        "altMoment": "Cutting toe-ends his second ball to long-on and departs for a duck. SRH close on 185, and Gayle and Kohli's 114-run charge turns a tense chase into a procession.",
+        "headline": "CUTTING FALLS CHEAPLY, KOHLI CASHES IN — RCB CROWNED AS 185 PROVES 24 TOO FEW",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Did an Australian nobody had picked as the danger man decide the whole final?",
+        "ripples": [
+          "SRH's death overs fizzle instead of exploding — 185/8 replaces 208/7 on the Chinnaswamy scoreboard",
+          "Gayle's 76 and an unbeaten Kohli are enough this time; RCB cruise home with seven balls to spare",
+          "Cutting never wins Man of the Match in an IPL final; he drifts back into journeyman T20 life",
+          "Warner's captaincy masterclass is forgotten; SRH's 2016 core quietly breaks up",
+          "Kohli lifts the trophy wearing the Orange Cap as the drought ends at home"
+        ],
+        "story": [
+          "Finals have a way of choosing unlikely authors. In the universe we know, Sunrisers Hyderabad were drifting near the death when Ben Cutting — a broad-shouldered Queenslander picked mainly for his cross-seamers — began hitting sixes that landed in other postcodes. Thirty-nine off fifteen balls, and a good total became a monster: 208. But sport pivots on single swings of the bat. Rewind to his second delivery, a slower ball from Shane Watson, hanging in the Bengaluru air a fraction longer.",
+          "Cutting swung early. In the universe we know the connection was flush and the ball kept climbing; here it came off the toe and long-on took it at a jog. A duck, second ball. Warner watched from the dugout as the final's arithmetic changed in a single second. The death overs, which detonated in the other timeline, produced eighteen scrambled runs in this one. Sunrisers finished on 185 for eight — good, honest, and more than twenty runs short of safe.",
+          "One hundred and eighty-six had a different taste to it. Gayle and Kohli still came out swinging — 114 inside eleven overs, the same charge, the same shaking stands — but now the charge was a verdict rather than a gamble. When Gayle fell for 76 the required rate was under seven. Kohli, 973 runs deep into the season of his life, simply administered the rest. There was no collapse, because there was nothing left to collapse under.",
+          "The winning runs came in the nineteenth over, Kohli unbeaten on 68, the Chinnaswamy in a state that neighbours three suburbs away reported as weather. He lifted the trophy wearing the Orange Cap, a nine-season ache dissolving around him. In the away dressing room, David Warner sat with a towel over his head, replaying one slower ball. Two hundred and eight would have won it, he kept thinking. He was right. It just never got scored.",
+          "Ben Cutting's life forked quietly. No Man of the Match medal in an IPL final, no cult status, no highlight reel of a six still travelling — just a journeyman's schedule and a duck in the biggest game he ever played. Hyderabad's wait for a first title stretched on with no end in sight. And Bengaluru learned a strange truth about the 2025 triumph of the real universe: sometimes a drought is just one toe-end away from never existing at all."
+        ],
+        "dossier": {
+          "commentary": "Cutting winds up second ball — it's off the toe end! Long-on settles underneath... taken! The big Queenslander goes for a duck, and Sunrisers' late surge has been strangled before it ever began!",
+          "channel": "Sony Max — IPL Final, Live from the Chinnaswamy",
+          "scoreline": "RCB 186/3 (18.5) beat SRH 185/8 (20) by 7 wickets — Gayle 76, Kohli 68*; Warner 69",
+          "socials": [
+            {
+              "handle": "@OrangeArmyAkil",
+              "text": "We needed one more over of madness and got a toe-end instead. 185 at the Chinnaswamy is a coin toss and we lost it.",
+              "likes": "19.3K"
+            },
+            {
+              "handle": "@BoldBengaluruBoy",
+              "text": "Kohli in the Orange Cap holding the trophy is the single greatest photograph in Indian sport. Frame it in every home.",
+              "likes": "72.6K"
+            },
+            {
+              "handle": "@DeathOversDegree",
+              "text": "Finals are decided by No.7s who bowl a bit. Tonight ours got out second ball and theirs never even had to bat. Margins, man.",
+              "likes": "8.1K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Ben Cutting's final",
+              "reality": "39* off 15 plus two wickets — Man of the Match",
+              "alternate": "A second-ball duck, forgotten by Monday"
+            },
+            {
+              "label": "RCB's title drought",
+              "reality": "Broken only in 2025, after 18 seasons",
+              "alternate": "Ends in 2016, at home"
+            },
+            {
+              "label": "SRH's IPL titles",
+              "reality": "1 (2016)",
+              "alternate": "0 — the wait goes on"
+            }
+          ],
+          "retro": "The six that made Ben Cutting immortal was, in this universe, just a catch."
+        }
+      }
+    ]
+  },
+  {
     "id": "ct2017-final-oval",
     "year": "2017",
     "tournament": "ICC Champions Trophy Final · The Oval, London",
@@ -3425,6 +3725,150 @@ const MATCHES = [
               "alternate": "Never printed — nothing to atone for"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "wwc2017-final",
+    "year": "2017",
+    "tournament": "ICC Women's World Cup Final · Lord's, London",
+    "team1": "England",
+    "team2": "India",
+    "accentColor": "#831843",
+    "summary": "A sold-out Lord's, a record global audience, and a final that swung with every over. India, chasing 229, were cruising at 191/3 — then Anya Shrubsole took the ball and took the game apart. Nine runs decided a revolution.",
+    "realResult": "England won by 9 runs. Chasing 229, India collapsed from 191/3 to 219 all out as Anya Shrubsole took 6/46 — still the best bowling figures in a Women's World Cup final.",
+    "moments": [
+      {
+        "id": "2017-raut-lbw",
+        "icon": "☝️",
+        "label": "The Raised Finger",
+        "what": "What if Punam Raut wasn't given out LBW?",
+        "desc": "Raut had batted three hours for her 86 and India needed just 38 more with seven wickets standing. Then Shrubsole rapped her pad, the finger went up, and everything changed.",
+        "realMoment": "Anya Shrubsole angled one into Punam Raut's pads and the finger went up for 86 — a desperately tight call. From 191/3, India lost seven wickets for 28 runs and fell nine short.",
+        "altMoment": "The appeal dies at the umpire's unmoved hands. Raut, set and serene, keeps gliding singles and the odd boundary until India stand a single hit from history.",
+        "headline": "RAUT'S VIGIL CONQUERS LORD'S — INDIA ARE WORLD CHAMPIONS",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Did one raised finger delay Indian women's cricket by eight years?",
+        "ripples": [
+          "Raut finishes 98 not out; Mithali Raj lifts the World Cup on the Lord's balcony",
+          "The boom starts with a trophy, not a heartbreak — a professional women's league arrives in India years earlier",
+          "Shrubsole's 6/46 never exists; the greatest spell in a World Cup final is never bowled",
+          "Harmanpreet's 171 at Derby and Raut's Lord's vigil become the twin founding myths of a champion side",
+          "The 2025 title at home becomes a second star on the shirt, not the end of the longest wait"
+        ],
+        "story": [
+          "Lord's had sold out for a women's match, and the old ground barely knew what to do with itself. The queues curled around St John's Wood from breakfast; inside, twenty-six and a half thousand people watched England scrap their way to 228 for 7 and understood that history would be made either way. India had never won a World Cup. England had never lost a home final. Something old was ending, whichever anthem played at dusk.",
+          "Punam Raut had built her innings the way masons build walls — without hurry, without ornament, without a single loose brick. Three hours in, India stood at 191 for 3, thirty-eight short, and the cup was crossing the Atlantic of its history in a rowing boat. Then Anya Shrubsole, all heart and inswing, thudded one into Raut's front pad and screamed. In our universe the finger went up. In this one, the umpire looked long, and slowly shook his head.",
+          "Reprieved, Raut did not blink. She had made 86 the hard way and would make the rest no other way. A nudged two through midwicket. A cover drive, her first true flourish since tea, that broke Shrubsole's spell before it could begin. Veda Krishnamurthy, all wrists and audacity at the other end, swept and scampered. The equation shrank — thirty, then twenty, then nine — and Lord's, English to its bones, began to applaud something larger than a result.",
+          "The winning runs came with nine balls unused, Raut steering the ball past point and setting off with her arms already rising. She finished 98 not out, and no unfinished hundred ever mattered less. Mithali Raj — ten thousand international runs, twenty years of carrying a game the world refused to televise — walked up the pavilion steps and lifted the World Cup while the Long Room stood and roared.",
+          "The revolution came anyway; it merely caught an earlier train. Sponsors who had hesitated signed within the week. A generation of daughters took up the game with a trophy for a torch, and the professional league followed years ahead of schedule. In the universe we know, all of it still happened — lit instead by a heartbreak, and made to wait until a November night in Navi Mumbai in 2025. Nine runs. Eight years. One finger."
+        ],
+        "dossier": {
+          "commentary": "Shrubsole thunders in and raps Raut on the pad — a huge shout, all of England up with her... NOT OUT! The umpire's unmoved, Raut survives on 86, and India are thirty-eight from history!",
+          "channel": "Sky Sports Cricket — Live from Lord's",
+          "scoreline": "INDIA 229/4 (48.3) beat ENGLAND 228/7 (50) by 6 wickets — Raut 98*, Goswami 3/23",
+          "socials": [
+            {
+              "handle": "@NursesEndNerd",
+              "text": "Punam Raut batted three hours of a World Cup final at Lord's and made it look like a Sunday at the nets. Bow to the wall.",
+              "likes": "22.7K"
+            },
+            {
+              "handle": "@BoundaryLineAmma",
+              "text": "Lord's 1983. Lord's 2017. My mother woke the whole street and my father is crying into his tea. This ground just belongs to us.",
+              "likes": "45.1K"
+            },
+            {
+              "handle": "@LongRoomLurker",
+              "text": "Gutted for our girls, but that Raut innings is the best thing I've seen at this ground in years. Cricket won today. Full stop.",
+              "likes": "18.9K"
+            }
+          ],
+          "records": [
+            {
+              "label": "India's Women's World Cup titles",
+              "reality": "1 — the wait finally ended at home in 2025",
+              "alternate": "2 (2017, 2025) — a dynasty born at Lord's"
+            },
+            {
+              "label": "Shrubsole's 6/46",
+              "reality": "Still the best bowling figures in a Women's World Cup final",
+              "alternate": "Never taken; the spell dies at the pad"
+            },
+            {
+              "label": "Raut's 86",
+              "reality": "The top score of the final — in defeat",
+              "alternate": "98* and the most famous not-out in Indian cricket"
+            }
+          ],
+          "retro": "In that universe, the little girls watching didn't have to wait until 2025 to learn how the story ends."
+        }
+      },
+      {
+        "id": "2017-shrubsole-spell",
+        "icon": "🔥",
+        "label": "The Spell",
+        "what": "What if Anya Shrubsole's spell never caught fire?",
+        "desc": "Brought back with the final drifting away from England, Shrubsole tore through India's middle and lower order to finish with 6/46. What if the death overs had belonged to India instead?",
+        "realMoment": "Recalled with India coasting, Shrubsole produced the most devastating burst a Women's World Cup final has seen — wicket after wicket in her closing spell, 6/46 in all, as 191/3 became 219 all out.",
+        "altMoment": "Shrubsole's radar is a fraction off. Veda Krishnamurthy carts consecutive boundaries, the field scatters to the rope, and India's chase never stumbles.",
+        "headline": "KRISHNAMURTHY'S DASH SEALS IT — INDIA CROWNED AT THE HOME OF CRICKET",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Was Shrubsole's burst the greatest death-overs spell any World Cup final has seen?",
+        "ripples": [
+          "Krishnamurthy's 35 swells into an unbeaten fifty; India win by five wickets with more than two overs to spare",
+          "Heather Knight's England are left to rebuild — and the next final, in 2022, went Australia's way in both universes",
+          "Shrubsole never becomes the face of English cricket's summer — no roar, no legend, no cover",
+          "The women's game in India booms off the back of a trophy parade down Marine Drive",
+          "England's 2017 golden summer is remembered as the year the game grew — and got away"
+        ],
+        "story": [
+          "England's 228 for 7 had been a scrap, not a statement — Nat Sciver's fifty the spine of it, Jhulan Goswami's 3 for 23 the reason it wasn't more. Everyone at Lord's sensed the total was ten light. But finals are not played on paper, and England had a bowler from Somerset who had dreamed, publicly and since childhood, of exactly this stage. All she needed was the ball in her hand and a door left ajar.",
+          "In the universe we know, the door swung open and Anya Shrubsole tore it off its hinges. In this one, her first ball back sat up a fraction short, and Veda Krishnamurthy — twenty-four years old and allergic to reverence — rocked back and pumped it through cover. The next was fuller; Veda drove it harder. Eleven came from the over, the equation collapsed to a canter, and the greatest spell never bowled slid quietly out of history.",
+          "Punam Raut kept the ledger at the other end, 86 and counting, singles falling off her bat like ripe fruit. England's captain rang every change she had — spin from the Pavilion End, the field pushed back, the field brought up. None of it mattered. When a side has waited forty-four years and stands twenty runs away, gravity itself changes sides.",
+          "The end came at a gallop: Veda lofting over extra cover, sprinting back for two, then flicking the winning boundary fine and disappearing beneath a pile of blue shirts before the ball reached the rope. 232 for 5. India, champions of the world, at the cathedral of the game that had so long kept its doors half-closed to them.",
+          "For England, only the long walk and the longer winter — though the game they had grown all summer kept growing without the silverware. For India, everything changed at once: the airport crowds, the primetime replays, the sponsorships, the academies. And in our universe, all of that arrived anyway, carried not by a parade but by a wound — and by a Somerset seamer's roar that turned out to be the sound of two cricketing nations changing at the same instant."
+        ],
+        "dossier": {
+          "commentary": "Short again from Shrubsole and Krishnamurthy PUMPS it through cover — that's four more! Whatever magic England were promised from this spell, it is not coming tonight!",
+          "channel": "Sky Sports Cricket — Live from Lord's",
+          "scoreline": "INDIA 232/5 (47.4) beat ENGLAND 228/7 (50) by 5 wickets — Raut 86, Krishnamurthy 52*",
+          "socials": [
+            {
+              "handle": "@ShortLegSusan",
+              "text": "Anya has been our banker all summer and tonight the pitch just said no. Sport is unbearably cruel. Proud of every one of them anyway.",
+              "likes": "12.4K"
+            },
+            {
+              "handle": "@GalleryGully",
+              "text": "VEDA KRISHNAMURTHY. Remember the name. Walked into a wobbling Lord's final and treated it like gully cricket on a Sunday.",
+              "likes": "39.6K"
+            },
+            {
+              "handle": "@TeaAndTopSpin",
+              "text": "26,500 in here and not one of us sat down for the last hour. Anyone still saying nobody watches women's cricket wasn't at Lord's tonight.",
+              "likes": "27.8K"
+            }
+          ],
+          "records": [
+            {
+              "label": "England's Women's World Cup titles",
+              "reality": "4 (1973, 1993, 2009, 2017)",
+              "alternate": "3 — and a home final that slipped away"
+            },
+            {
+              "label": "Wisden Almanack cover, 2018",
+              "reality": "Shrubsole — the first woman ever to appear on it",
+              "alternate": "Someone else's face; someone else's summer"
+            },
+            {
+              "label": "The Lord's gate",
+              "reality": "A sold-out final of about 26,500 — a landmark for the women's game",
+              "alternate": "The same full house, singing in a different language"
+            }
+          ],
+          "retro": "Documentaries in that universe end not with Shrubsole's roar, but with Krishnamurthy dancing down the Lord's turf."
         }
       }
     ]
@@ -3652,6 +4096,150 @@ const MATCHES = [
     ]
   },
   {
+    "id": "ipl2019-final",
+    "year": "2019",
+    "tournament": "IPL Final · Rajiv Gandhi Stadium, Hyderabad",
+    "team1": "Mumbai Indians",
+    "team2": "Chennai Super Kings",
+    "accentColor": "#123c7a",
+    "summary": "A grinding, low-scoring classic on a slow Hyderabad pitch. MI's 149/8 looked light until CSK's chase tightened around Shane Watson's bleeding knee. A run out off the penultimate ball, an LBW off the last — Mumbai by one run, the closest final the IPL has ever seen.",
+    "realResult": "Mumbai Indians won by 1 run — MI 149/8 (Pollard 41*), CSK 148/7 (Watson 80). Watson was run out going for a second off the penultimate ball; Malinga trapped Shardul Thakur with the final delivery to seal MI's fourth title.",
+    "moments": [
+      {
+        "id": "ipl2019-watson-second-run",
+        "icon": "🩸",
+        "label": "The Second Run",
+        "what": "What if Shane Watson hadn't been run out going for the second?",
+        "desc": "Watson, batting on 80 with a gashed and bleeding knee, pushed the penultimate ball into the deep and turned for two. The throw beat his dive by inches. What if the old warhorse had made his ground?",
+        "realMoment": "Off the penultimate ball, Watson (80 off 59) scrambled back for a second run that would have all but sealed it — and was run out by inches, leaving CSK needing 2 off the final ball.",
+        "altMoment": "Watson's dive beats the throw. He keeps strike on 82 with one needed off the last ball, and the trophy tilts yellow.",
+        "headline": "WATSON'S DIVE BEATS THE THROW — BLEEDING WARHORSE DRAGS CHENNAI TO THE TITLE",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Was the closest final in IPL history really decided by the length of one dive?",
+        "ripples": [
+          "Watson makes his ground on 82; a squeezed single off the last ball wins CSK the title by five wickets",
+          "It later emerges he batted through the innings on a gashed, bleeding knee — the knock becomes instant folklore",
+          "Dhoni claims a fourth title and back-to-back crowns; CSK, not MI, own the decade's ledger",
+          "Rohit Sharma is denied in Hyderabad; Mumbai's odd-year rhythm of titles dies on the spot",
+          "Malinga's final IPL over is remembered for heartbreak, not the perfect slower ball"
+        ],
+        "story": [
+          "It was the kind of final the purists pretend to prefer — 149 to win on a Hyderabad surface that gripped and sulked. Shane Watson had begun like a man batting in wet cement, and CSK's chase sagged around him. Then, somewhere past his fifty, the timing arrived and the old violence with it. What nobody in the stadium knew was that his front knee was split open beneath the trouser leg, bleeding freely with every stride, stitched together by nothing but stubbornness.",
+          "Three needed off two. Watson pushed Malinga toward the deep and set off, calling the second before the first was finished — a 37-year-old sprinting on an open wound. The throw came in flat and true, exactly as it did in the universe we know. But here his dive stretched three inches further. The bat slid home ahead of the bails. The big screen said NOT OUT, and forty thousand notionally neutral Hyderabadis made a sound that belonged to Chennai.",
+          "One needed, one ball, Watson on strike — a sentence that ends only one way. Malinga went to the slower yorker that wins the title in the other timeline, and Watson, waiting on it, squeezed it square and ran. The single was a formality; the roar was not. He finished 82 not out, on one good leg, in what everyone sensed was his last great night. Dhoni was first out of the dugout, which told you everything about what it meant.",
+          "The photographs came later — the trouser leg peeled back, the gash, the blood. The innings hardened instantly into folklore: the night Watson bled for Chennai. Dhoni lifted a fourth title with the smallest of smiles, back-to-back crowns for a franchise that had returned from a two-year ban with a point to sharpen. Across the rope, Rohit Sharma stared at a defeat measured in inches, Mumbai's odd-year rhythm broken by an old man's dive.",
+          "The decade's ledger tilted. Chennai moved clear of Mumbai, and the rivalry's neat arithmetic — five titles apiece in the universe we know — never got the chance to balance. Watson retired soon after, the 82 riding shotgun in every tribute reel, the bloodied knee its co-star. And Lasith Malinga, whose slower ball won the whole thing in the other timeline, bowled his final IPL delivery into heartbreak instead. Finals this close, he said later, are not decided by talent. They are decided by inches."
+        ],
+        "dossier": {
+          "commentary": "Watson pushes into the gap, they're coming back for two — the throw's a bullet, WATSON DIVES... NOT OUT! NOT OUT ON THE BIG SCREEN! He's in by the width of a bat sticker, and Chennai need one off the final ball with the warhorse on strike!",
+          "channel": "Star Sports — IPL Final, Hotstar simulcast",
+          "scoreline": "CSK 150/5 (20) beat MI 149/8 (20) by 5 wickets — Watson 82*; Pollard 41*",
+          "socials": [
+            {
+              "handle": "@WhistleFromMylapore",
+              "text": "He was BLEEDING the whole time. Batted an hour on an open knee and then dived like a 21-year-old. Statues have been built for less.",
+              "likes": "64.7K"
+            },
+            {
+              "handle": "@BlueTilliDie",
+              "text": "We lost a final by three inches of dive. I have watched the replay forty times hoping physics changes its mind. It does not.",
+              "likes": "27.2K"
+            },
+            {
+              "handle": "@UppalNeutralNoMore",
+              "text": "Came to watch a final, ended up adopting CSK. That last over aged me a decade and I don't even have a team.",
+              "likes": "11.9K"
+            }
+          ],
+          "records": [
+            {
+              "label": "MI's IPL titles",
+              "reality": "5 (2013, 2015, 2017, 2019, 2020)",
+              "alternate": "4 — the 2019 star never gets stitched on"
+            },
+            {
+              "label": "CSK's IPL titles",
+              "reality": "5 (2010, 2011, 2018, 2021, 2023)",
+              "alternate": "6 — including back-to-back in 2018-19"
+            },
+            {
+              "label": "Watson's IPL finals",
+              "reality": "117* in 2018; run out for 80 in 2019 on a bleeding knee",
+              "alternate": "Two title-winning knocks in two straight years"
+            }
+          ],
+          "retro": "The knee healed; in this universe, so did the scoreline."
+        }
+      },
+      {
+        "id": "ipl2019-last-ball-lbw",
+        "icon": "☝️",
+        "label": "The Final Ball",
+        "what": "What if the last-ball LBW against Shardul Thakur was given not out?",
+        "desc": "Two needed off the final ball of the season. Malinga's slower one dipped into Thakur's pads, the appeal went up, and so did the finger. In an era of umpire's-call margins, what if it had stayed down?",
+        "realMoment": "Malinga's dipping slower yorker struck Shardul Thakur on the pad, the umpire raised his finger, and MI won by 1 run — the closest final in IPL history.",
+        "altMoment": "The finger stays down. The ball squirts off the pad toward short fine leg, and Thakur and his partner scramble two leg byes as the throw misses everything. CSK win off the final ball.",
+        "headline": "FINGER STAYS DOWN, CHENNAI STEAL TWO — CSK SNATCH THE CLOSEST FINAL EVER",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Should the tightest final in IPL history really have ended on a raised finger?",
+        "ripples": [
+          "Two scrambled leg byes off the pad win it — the title is decided by a half-inch shake of the umpire's head",
+          "Malinga's last IPL delivery becomes the great injustice of his career instead of its crowning moment",
+          "Dhoni's razor-thin run out for 2 earlier in the chase becomes a footnote instead of a decade-long debate",
+          "MI stay on three titles until 2020; talk of a Mumbai dynasty arrives a year late",
+          "Midnight ball-tracking flashes 'clipping leg — umpire's call', and the argument never actually ends"
+        ],
+        "story": [
+          "Two off one, and the entire IPL had shrunk to a strip of dry Hyderabad clay. Lasith Malinga stood at the top of his mark, gold-tipped curls under the lights, the most experienced death bowler the format had ever produced. Shardul Thakur, a bowler batting for a title, tapped his crease and tried to look calm. On the Mumbai side of the rope nobody sat; in the CSK dugout Dhoni watched with the expression of a man reading a newspaper. Everyone else forgot to breathe.",
+          "The ball was the same in both universes — the slower one, dipping late, skidding into the front pad as Thakur heaved across the line. The appeal was a scream from eleven men at once, Malinga already wheeling away in celebration. In the world we know, the finger went up. In this one, the umpire's head moved half an inch left, then right. Not out. The ball had already squirted toward short fine leg, and somewhere inside the noise two batsmen were sprinting for their lives.",
+          "The first leg bye was safe; the second was pure madness. The throw, snatched and hurried, missed the stumps at the striker's end by a hand's width, and Shardul Thakur — face contorted, bat aloft — carried Chennai over the line on runs he never hit. CSK 150 for six. Champions by a shake of the head. Dhoni walked onto the field at the same speed he does everything, and the yellow half of India did not sleep for two days.",
+          "Midnight brought the graphics. Ball-tracking flashed its verdict — clipping leg stump, umpire's call — and the argument calcified on both sides forever. Mumbai's players stood scattered in a blue constellation, unable to leave the field. Malinga, whose slower ball had been perfect, perfect enough to win every other version of this night, stared down the pitch at the decision that unmade it. It was, though nobody knew it then, the last ball he would ever bowl in the IPL.",
+          "The record books moved by one run and a whole universe. The closest final in IPL history now belonged to Chennai — back-to-back titles, a sixth crown by the end of 2023 — while Mumbai's dynasty talk was postponed until Dubai a year later. Dhoni's run out for two earlier that evening, the debate of a decade in the real world, faded into a footnote. And Shardul Thakur was forever afterwards introduced at dinners the same way: the man who won an IPL final without hitting the winning runs."
+        ],
+        "dossier": {
+          "commentary": "Malinga to Thakur, two to win — the slower ball, into the pads, HUGE APPEAL... NOT OUT SAYS THE UMPIRE! They're running — the throw misses! They've come back for the second! Chennai Super Kings have won the IPL off leg byes — absolute BEDLAM in Hyderabad!",
+          "channel": "Star Sports — IPL Final, Hotstar simulcast",
+          "scoreline": "CSK 150/6 (20) beat MI 149/8 (20) by 4 wickets — Watson 80; two leg byes off the final ball",
+          "socials": [
+            {
+              "handle": "@LegByeLegend",
+              "text": "We won an IPL final on LEG BYES. The winning 'shot' was a pad. I love this stupid beautiful sport so much.",
+              "likes": "58.4K"
+            },
+            {
+              "handle": "@PaltanHeartbreak",
+              "text": "Umpire's call. UMPIRE'S CALL. One half-inch head shake and my entire year is ruined. Malinga deserved so much better.",
+              "likes": "33.1K"
+            },
+            {
+              "handle": "@ThirdUmpireStan",
+              "text": "Dhoni run out for 2 and nobody will even remember it now. This final packed ten years of drama into four hours.",
+              "likes": "14.6K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Closest IPL final",
+              "reality": "MI by 1 run (2019) — still unmatched",
+              "alternate": "CSK off the last ball, on leg byes"
+            },
+            {
+              "label": "CSK's IPL titles",
+              "reality": "5 (2010, 2011, 2018, 2021, 2023)",
+              "alternate": "6 — back-to-back in 2018-19"
+            },
+            {
+              "label": "Malinga's farewell",
+              "reality": "His last IPL ball won the title — the perfect slower yorker",
+              "alternate": "His last IPL ball lost it, by half an inch of head shake"
+            }
+          ],
+          "retro": "Somewhere between the pad and the finger that never rose lived an entire alternate decade of the IPL."
+        }
+      }
+    ]
+  },
+  {
     "id": "bgt2021-gabba",
     "year": "2021",
     "tournament": "Border-Gavaskar Trophy 4th Test · The Gabba, Brisbane",
@@ -3725,6 +4313,150 @@ const MATCHES = [
               "alternate": "33 years unbeaten — and counting"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "t20wc2021-ind-pak",
+    "year": "2021",
+    "tournament": "ICC T20 World Cup · Dubai International Stadium",
+    "team1": "Pakistan",
+    "team2": "India",
+    "accentColor": "#14532d",
+    "summary": "Twenty-nine years, twelve World Cup meetings, twelve Indian wins. Then Shaheen Afridi bent the new ball under the Dubai ring of fire, Babar and Rizwan chased 152 without being parted, and the oldest curse in cricket dissolved in one perfect night.",
+    "realResult": "Pakistan won by 10 wickets — their first World Cup win over India in 13 meetings. Shaheen Afridi took 3/31, removing Rohit for 0 and Rahul for 3, before Rizwan (79*) and Babar (68*) chased down 152 with 13 balls to spare.",
+    "moments": [
+      {
+        "id": "2021-shaheen-burst",
+        "icon": "⚡",
+        "label": "The Opening Burst",
+        "what": "What if Rohit and Rahul survived Shaheen Afridi's opening burst?",
+        "desc": "Shaheen's new-ball spell — Rohit lbw for a duck in the first over, Rahul castled for 3 — broke India before the game had begun. What if the inswinger had stayed home?",
+        "realMoment": "Shaheen Shah Afridi swung the new ball at frightening pace: Rohit Sharma lbw for 0 in the first over, KL Rahul bowled for 3 soon after. India were 6/2 and never truly recovered, limping to 151/7.",
+        "altMoment": "Shaheen strains for the inswinging yorker and overpitches. Rohit whips it off his pads, Rahul drives the follow-up down the ground, and India's openers walk out of the powerplay untouched.",
+        "headline": "ROHIT AND KOHLI KEEP THE STREAK ALIVE — INDIA MAKE IT 13 FROM 13",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Was one Shaheen over the only thing separating 12-0 from 13-0?",
+        "ripples": [
+          "Rohit races to 74; India post 186/4 and the scoreboard, not Shaheen, becomes the story of the night",
+          "Babar and Rizwan fall chasing eleven an over; Bumrah's 3/22 shuts the door by 29 runs",
+          "The hoodoo hardens into a permanent psychological wall — 13-0, and the ads write themselves",
+          "Kohli's farewell tournament as T20I captain opens with a coronation instead of a funeral",
+          "Shaheen Afridi is remembered as a fine young quick, not the author of Pakistani cricket's greatest night"
+        ],
+        "story": [
+          "For twenty-nine years the fixture had obeyed the same cruel arithmetic. Twelve times India and Pakistan had met at a World Cup, across two formats and three decades, and twelve times India had walked off winners. In Dubai that October evening, with the ring of fire blazing and two nations crouched in front of televisions, Pakistan gave the new ball to a twenty-one-year-old with a slingshot arm and asked him to bend history.",
+          "In the universe we know, Shaheen Shah Afridi's first over produced a delivery that swung late and wickedly into Rohit Sharma's front pad. In this one, it began a fraction straighter and never came back. Rohit clipped it fine for four, unfurled the lazy pull an over later, and by the time Shaheen returned the inswinger had deserted him entirely. KL Rahul drove him twice down the ground, and Dubai's Indian majority found its voice.",
+          "The platform became a launchpad. Rohit's 74 had every shot in his catalogue — the front-foot pull, the disdainful loft over mid-off — and Kohli, batting with the freedom of a man whose team was already ahead, hurried India to 186/4. Shaheen finished with none for 44, his shoulders sagging at fine leg while the stands behind him turned blue.",
+          "Babar Azam and Mohammad Rizwan began the chase beautifully, as they had begun so many. But 187 was a different mountain from 152, and the required rate did what India's bowlers alone might not have. Rizwan holed out taking on the rope, Babar chopped Bumrah on for a silken 49, and the middle order — playing catch-up from ball one — swung itself into the desert night. Bumrah's 3/22 read like a verdict.",
+          "India won by 29 runs, and the ledger said 13-0. Kohli spoke graciously; Babar stared at a point somewhere beyond the floodlights. Nobody in that universe ever saw what the first crack in the wall might have unleashed — the Shaheen yorker, the unbroken 152, the night an entire country finally exhaled. The wall simply stood, taller than ever, waiting for the next generation to bloody its hands on it."
+        ],
+        "dossier": {
+          "commentary": "Shaheen charges in, hunting that lethal inswinger — but it's overpitched, and Rohit Sharma just purrs it off his pads for four! The trap hasn't sprung, and India are away in Dubai!",
+          "channel": "Star Sports — Live from Dubai",
+          "scoreline": "INDIA 186/4 (20) beat PAKISTAN 157/8 (20) by 29 runs — Rohit 74, Bumrah 3/22",
+          "socials": [
+            {
+              "handle": "@DubaiDeckchair",
+              "text": "Shaheen's first over went for eight and I watched twenty-nine years of my life flash before my eyes. 13-0. At this point it's hereditary.",
+              "likes": "47.2K"
+            },
+            {
+              "handle": "@PowerplayPandit",
+              "text": "Rohit against the new ball was supposed to be the mismatch of the night. It was — just not the way Pakistan dreamed it.",
+              "likes": "31.8K"
+            },
+            {
+              "handle": "@KarachiKorner",
+              "text": "We waited three decades for one World Cup win over India and the universe said 'nah, run the old ads again.'",
+              "likes": "58.6K"
+            }
+          ],
+          "records": [
+            {
+              "label": "India–Pakistan World Cup ledger",
+              "reality": "Pakistan's 2021 win ended a 12-match losing streak dating to 1992",
+              "alternate": "0 from 13 — the wall grows taller"
+            },
+            {
+              "label": "Shaheen's opening burst",
+              "reality": "Rohit lbw 0, Rahul b 3 — figures of 3/31",
+              "alternate": "0/44 — the night the inswinger stayed home"
+            },
+            {
+              "label": "The margin",
+              "reality": "India's first ever 10-wicket defeat in T20 internationals",
+              "alternate": "A 29-run win; normal service resumed"
+            }
+          ],
+          "retro": "In that universe, nobody in Karachi ever learned what it felt like to finally exhale."
+        }
+      },
+      {
+        "id": "2021-rizwan-edge",
+        "icon": "🧤",
+        "label": "The Phantom Edge",
+        "what": "What if Rizwan had been caught early in the chase?",
+        "desc": "Chasing 152, Babar and Rizwan gave India nothing — no mistake, no opening, no hope — for 17.5 overs. What if the new ball had found Rizwan's edge in the powerplay?",
+        "realMoment": "India's bowlers searched for a breakthrough that never came. Rizwan (79*) and Babar (68*) added an unbeaten 152, and the fiercest rivalry in cricket ended, for one night, as a procession.",
+        "altMoment": "Third over, Bumrah finds the seam and Rizwan's outside edge. KL Rahul clings on low at slip. Pakistan are 15/1, Babar is suddenly alone, and a small total grows teeth.",
+        "headline": "BUMRAH TURNS 151 INTO A FORTRESS — PAKISTAN CHOKE IN DUBAI",
+        "eyebrow": "In Another Universe...",
+        "verdictQ": "Would one early wicket have woken the oldest demons in a Pakistan chase?",
+        "ripples": [
+          "Pakistan slide from 15/1 to 89/5 as the asking rate climbs past ten",
+          "Jadeja and Bumrah strangle the middle overs; Pakistan close on 138/9, thirteen short",
+          "'Even 151 is enough against Pakistan' becomes the rivalry's cruellest proverb",
+          "Rizwan's record-breaking year carries an asterisk shaped like KL Rahul's hands",
+          "Kohli's 57 is remembered as a captain's masterpiece instead of a lament"
+        ],
+        "story": [
+          "At the innings break, 151 felt twenty short — everyone in the Dubai International Stadium knew it. But this was India versus Pakistan, where no total had ever been just a number, where scoreboard pressure arrived wearing history's jersey. Virat Kohli, whose 57 had held the innings together, gathered his bowlers in a huddle and told them what every Indian fan was already muttering at home: one wicket. Get one, and thirty years of ghosts do the rest.",
+          "In the universe we know, the wicket never came. In this one, Jasprit Bumrah's third over found the seam, the deck, and finally the outside edge of Mohammad Rizwan's pushing blade. KL Rahul, low at slip, scooped it a blade of grass above the turf. The umpires checked; the soft signal stood. Rizwan walked for 11, and the stadium made a sound like a dam beginning to crack.",
+          "Babar Azam played on serenely, because Babar always did. But around him the innings tightened like a knot. Fakhar swiped across a Jadeja arm-ball. Hafeez, promoted to force the pace, picked out deep midwicket. When Shami — bowling with a fury that needed no explanation — trimmed Malik's off bail, Pakistan were 89/5 and the required rate had climbed into double figures.",
+          "Babar fell last, for 61, holing out off Bumrah with three overs left and thirty still needed. The final margin was thirteen runs, and it felt like a hundred. Shami finished it with a yorker and was mobbed; Kohli carried him off the field on a shoulder that had spent the whole evening pointing at the sky. The ledger, in that universe, read 13-0 and counting.",
+          "What nobody there could know was how close the other outcome had run — an edge that flew eleven inches wider, a slip cordon that never got its chance, and Rizwan batting until the lights themselves seemed to give up. Two universes, separated by the width of a bat face. In one of them, Pakistan's greatest night never happened. In the other, it never needed to be doubted again."
+        ],
+        "dossier": {
+          "commentary": "Bumrah hits that hard length — Rizwan feels for it — thick edge! Rahul at slip... TAKEN, low to his left! Fifteen for one, and suddenly 151 looks like a score in Dubai!",
+          "channel": "Star Sports — Live from Dubai",
+          "scoreline": "INDIA 151/7 (20) beat PAKISTAN 138/9 (20) by 13 runs — Kohli 57, Bumrah 3/19",
+          "socials": [
+            {
+              "handle": "@RingOfFireDXB",
+              "text": "Rizwan edges, Rahul catches, and ninety thousand family WhatsApp groups just came back online. It is NEVER over against Pakistan.",
+              "likes": "41.3K"
+            },
+            {
+              "handle": "@LahoreLightsOut",
+              "text": "We finally bowl India out for 151 and STILL find a way. I'm done with this sport. (I am not done. Same sofa, next match.)",
+              "likes": "36.9K"
+            },
+            {
+              "handle": "@CoverDriveCafe",
+              "text": "Virat's 57 aged like fine wine the second that edge stuck. Captain's knocks don't need to be pretty. They need to be enough.",
+              "likes": "28.4K"
+            }
+          ],
+          "records": [
+            {
+              "label": "Rizwan's 2021",
+              "reality": "1,326 T20I runs — the most ever in a calendar year",
+              "alternate": "Ends 79 runs lighter, and one scar heavier"
+            },
+            {
+              "label": "Kohli's last dance as T20I captain",
+              "reality": "A group-stage exit; Rohit inherited the job",
+              "alternate": "Opens with a heist India ride all the way to the semis"
+            },
+            {
+              "label": "Pakistan's campaign",
+              "reality": "Five wins from five in the group, out in the semi-final",
+              "alternate": "Wounded in Dubai; the aura never assembles"
+            }
+          ],
+          "retro": "Somewhere in that other Dubai, an edge carried eleven inches further, and an entire generation kept its old certainties."
         }
       }
     ]
