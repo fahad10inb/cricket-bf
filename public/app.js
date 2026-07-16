@@ -690,7 +690,8 @@ async function share() {
         if (res.ok) customData.shareId = (await res.json()).id;
       } catch (_) {}
     }
-    url = customData.shareId ? `${location.origin}/#/shared/${customData.shareId}` : location.origin;
+    // /s/<id> serves story-specific link previews, then redirects into the app
+    url = customData.shareId ? `${location.origin}/s/${customData.shareId}` : location.origin;
   } else {
     headline = currentMoment.headline;
     url = `${location.origin}/#/story/${encodeURIComponent(currentMoment.id)}`;

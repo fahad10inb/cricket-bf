@@ -280,6 +280,35 @@ app.post('/api/story', shareLimit, async (req, res) => {
   }
 });
 
+// ── GET /s/:id — scraper-friendly share page ─────────
+// Link previews (WhatsApp/LinkedIn) can't read #/hash routes, so shared
+// links point here: story-specific OG tags + instant redirect to the app.
+app.get('/s/:id', async (req, res) => {
+  const id = req.params.id;
+  let s = null;
+  try {
+    const rows = await sbSelect(`cricket_stories?id=eq.${encodeURIComponent(id)}&select=data`);
+    s = rows[0] ? rows[0].data : null;
+  } catch (_) {}
+  const escH = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const origin   = `https://${req.headers.host}`;
+  const headline = s ? s.headline : 'Cricket Butterfly Effect — Rewrite History';
+  const desc     = s ? `${s.matchPill} — In another universe...` : 'Change one moment. Watch cricket history unravel.';
+  const target   = `${origin}/#/shared/${encodeURIComponent(id)}`;
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(`<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>${escH(headline)}</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="${escH(headline)} 🦋">
+<meta property="og:description" content="${escH(desc)}">
+<meta property="og:image" content="${origin}/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escH(headline)} 🦋">
+<meta name="twitter:image" content="${origin}/og-image.png">
+<meta http-equiv="refresh" content="0;url=${target}">
+</head><body><script>location.replace(${JSON.stringify(target)})</script></body></html>`);
+});
+
 // ── GET /api/story/:id ───────────────────────────────
 app.get('/api/story/:id', async (req, res) => {
   try {
