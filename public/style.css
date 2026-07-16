@@ -318,29 +318,7 @@ body {
 /* ══════════════════════════════════════════
    THE TOSS THAT NEVER LANDS — landing intro
 ══════════════════════════════════════════ */
-/* Staging: the golden "If?" is the burst origin — it enters FIRST,
-   then attention cascades outward from it */
-body.intro .hero-title span {
-  animation:
-    introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.6s backwards,
-    titleIgnite 1.5s ease-out 4.6s backwards; /* inherits the coin's light */
-}
-@keyframes titleIgnite {
-  0%   { filter: drop-shadow(0 0 75px rgba(245,200,66,0.95)); }
-  100% { filter: drop-shadow(0 0 40px rgba(245,200,66,0.4)); }
-}
-body.intro .hero-title em   { animation: introRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 4.75s backwards; }
-body.intro .hero-eyebrow    { animation: introFade 0.5s ease 4.95s backwards; }
-body.intro .hero-sub        { animation: introFade 0.5s ease 5.05s backwards; }
-body.intro .daily-card      { animation: introRise 0.5s ease 5.15s backwards; }
-body.intro .hero-btns       { animation: introRise 0.5s ease 5.25s backwards; }
-body.intro .hero-btns-mini  { animation: introFade 0.5s ease 5.35s backwards; }
-body.intro .hero-ticker,
-body.intro .hero-server-row { animation: introFade 0.6s ease 5.45s backwards; }
-body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.55s backwards; }
-
 @keyframes introFade { from { opacity: 0; } }
-@keyframes introRise { from { opacity: 0; transform: translateY(20px); } }
 
 .toss-overlay {
   position: fixed;
@@ -620,6 +598,18 @@ body.intro .hero-ghosts     { animation: introFade 1.4s ease 5.55s backwards; }
   color: rgba(140,140,175,0.5);
   animation: introFade 1s ease 1.5s backwards;
 }
+
+/* Quick toss — Surprise Me pulls the lever (~2.5s) */
+.toss-overlay.quick .fl-1 { animation-delay: 0s; }
+.toss-overlay.quick .fl-2 { animation-delay: 0.08s; }
+.toss-overlay.quick .fl-3 { animation-delay: 0.16s; }
+.toss-overlay.quick .fl-4 { animation-delay: 0.24s; }
+.toss-overlay.quick .toss-arc,
+.toss-overlay.quick .toss-arc::after,
+.toss-overlay.quick .toss-coin { animation-duration: 1.15s; animation-delay: 0.15s; }
+.toss-overlay.quick .toss-stage { animation-duration: 2.6s; }
+.toss-overlay.quick .toss-caption { animation-delay: 0.05s; animation-duration: 0.5s; }
+.toss-overlay.quick .toss-skip { animation-delay: 0.6s; }
 
 /* ── Ghost headlines: other universes on the hero flanks (wide screens) ── */
 .hero-ghosts {

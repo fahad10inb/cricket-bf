@@ -147,49 +147,40 @@ function setupMatchSearch() {
   });
 }
 
-// ── Landing intro: THE TOSS THAT NEVER LANDS ──────────
-// Floodlights → coin rises spinning → freezes edge-on →
-// splits into IS (falls away, fades) and IF (curves down,
-// lands center) → impact → the universe arrives.
-function runIntro() {
-  const h = location.hash;
-  if (h && h !== '#' && h !== '#/') return;                       // deep links skip straight to content
-  if (sessionStorage.getItem('introSeen')) return;                 // once per session
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  try { sessionStorage.setItem('introSeen', '1'); } catch (_) {}
-
+// ── THE TOSS — now plays on Surprise Me, where a coin
+// toss is the point, not an obstacle. Homepage loads instantly.
+let tossPlaying = false;
+function playTossThen(done) {
   const ov = document.getElementById('toss-overlay');
-  if (!ov) return;
-  const caption = document.getElementById('toss-caption');
+  if (!ov || tossPlaying || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    done();
+    return;
+  }
+  tossPlaying = true;
+  let doneCalled = false;
+  const fire = () => { if (!doneCalled) { doneCalled = true; done(); } };
 
-  document.body.classList.add('intro');
-  ov.classList.add('play');
+  const caption = document.getElementById('toss-caption');
+  if (caption) { caption.textContent = 'LET THE COIN DECIDE...'; caption.classList.remove('gold'); }
+  ov.classList.add('play', 'quick');
 
   const timers = [];
   const t = (fn, ms) => timers.push(setTimeout(fn, ms));
-
-  t(() => {                                    // Beat 3: the freeze
-    ov.classList.add('phase-freeze');
-    if (caption) {
-      caption.textContent = 'IN ANOTHER UNIVERSE, IT LANDS THE OTHER WAY';
-      caption.classList.add('gold');
-    }
-  }, 2650);
-  t(() => ov.classList.add('phase-split'), 3350);   // Beat 4: two universes part
-  t(() => ov.classList.add('phase-land'), 4150);    // Beat 5: impact
-  t(() => ov.classList.add('fade'), 4600);
-  t(() => {
-    ov.classList.remove('play', 'phase-freeze', 'phase-split', 'phase-land', 'fade');
-    ov.style.display = 'none';
-  }, 5200);
-  t(() => document.body.classList.remove('intro'), 6300);
-
-  ov.addEventListener('click', () => {              // tap to skip — no waiting twice
+  const cleanup = () => {
     timers.forEach(clearTimeout);
-    ov.classList.remove('play', 'phase-freeze', 'phase-split', 'phase-land', 'fade');
-    ov.style.display = 'none';
-    document.body.classList.remove('intro');
-  }, { once: true });
+    ov.classList.remove('play', 'quick', 'phase-split', 'phase-land', 'fade');
+    tossPlaying = false;
+  };
+
+  t(() => {
+    ov.classList.add('phase-split');
+    if (caption) { caption.textContent = 'IN THIS UNIVERSE —'; caption.classList.add('gold'); }
+  }, 1350);
+  t(() => ov.classList.add('phase-land'), 2200);
+  t(() => { ov.classList.add('fade'); fire(); }, 2500);  // destination renders behind the fade
+  t(cleanup, 3100);
+
+  ov.addEventListener('click', () => { cleanup(); fire(); }, { once: true });
 }
 
 // ── Ghost headlines: other universes leaking into the hero flanks ──
@@ -232,7 +223,7 @@ function setupDailyCard() {
 function surpriseMe() {
   const match  = MATCHES[Math.floor(Math.random() * MATCHES.length)];
   const moment = match.moments[Math.floor(Math.random() * match.moments.length)];
-  navigate('#/twist/' + moment.id);
+  playTossThen(() => navigate('#/twist/' + moment.id));
 }
 
 // ── Match → Moments ───────────────────────────────────
@@ -1124,5 +1115,4 @@ setupDailyCard();
 setupHeroGhosts();
 buildMatchGrid();
 checkHealth();
-runIntro();
 initRouting();
