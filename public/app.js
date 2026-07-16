@@ -392,6 +392,7 @@ async function revealStory() {
 
   // Safety: make sure story is an array of strings
   const storyArr = Array.isArray(data.story) ? data.story : [String(data.story)];
+  lastStoryData = data; // for the save-as-image card
 
   // Populate DOM
   document.getElementById('story-match-pill').textContent = data.matchPill  || '';
@@ -743,6 +744,140 @@ function typewriter(el, text, speed, onDone) {
   }, speed);
 }
 
+// ── Save-as-image story card ──────────────────────────
+let lastStoryData = null;
+
+function wrapCanvasText(c, text, maxW) {
+  const words = String(text).split(/\s+/);
+  const lines = [];
+  let cur = '';
+  for (const w of words) {
+    const t = cur ? cur + ' ' + w : w;
+    if (c.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; }
+    else cur = t;
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+
+async function saveStoryCard() {
+  const d = lastStoryData;
+  if (!d) { showToast('⚠ Open a story first'); return; }
+  try {
+    await document.fonts.ready;
+    const W = 1080, H = 1350;
+    const cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    const c = cv.getContext('2d');
+
+    // background
+    const g = c.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0a0a16');
+    g.addColorStop(1, '#181630');
+    c.fillStyle = g;
+    c.fillRect(0, 0, W, H);
+    for (let i = 0; i < 80; i++) {
+      c.globalAlpha = 0.05 + Math.random() * 0.18;
+      c.fillStyle = Math.random() > 0.7 ? '#f5c842' : '#7070a0';
+      c.beginPath();
+      c.arc(Math.random() * W, Math.random() * H, 1 + Math.random() * 2.2, 0, 7);
+      c.fill();
+    }
+    c.globalAlpha = 1;
+    c.textAlign = 'center';
+
+    // eyebrow
+    c.fillStyle = '#f5c842';
+    c.font = '700 26px "Space Mono", monospace';
+    c.fillText('I N   A N O T H E R   U N I V E R S E . . .', W / 2, 120);
+
+    // headline (max 3 lines)
+    c.fillStyle = '#f0f0f8';
+    c.font = 'italic 700 58px "Playfair Display", serif';
+    let lines = wrapCanvasText(c, d.headline || '', W - 160);
+    if (lines.length > 3) { lines = lines.slice(0, 3); lines[2] += '…'; }
+    let y = 215;
+    lines.forEach(ln => { c.fillText(ln, W / 2, y); y += 76; });
+
+    // match pill
+    c.fillStyle = '#8c8caf';
+    c.font = '23px "Space Mono", monospace';
+    c.fillText(d.matchPill || '', W / 2, y + 12);
+    y += 66;
+
+    // divider
+    c.fillStyle = '#f5c842';
+    c.fillRect(W / 2 - 130, y, 260, 5);
+    y += 78;
+
+    const records = d.dossier && Array.isArray(d.dossier.records) ? d.dossier.records.slice(0, 3) : [];
+    if (records.length) {
+      c.fillStyle = '#8c8caf';
+      c.font = '700 24px "Space Mono", monospace';
+      c.fillText('THE RECORD BOOKS — REWRITTEN', W / 2, y);
+      y += 64;
+      records.forEach(r => {
+        c.fillStyle = '#8c8caf';
+        c.font = '700 23px Inter, sans-serif';
+        c.fillText(String(r.label || '').toUpperCase(), W / 2, y);
+        y += 42;
+        c.fillStyle = '#77778f';
+        c.font = '26px Inter, sans-serif';
+        const realText = String(r.reality || '');
+        const realW = Math.min(c.measureText(realText).width, W - 140);
+        c.fillText(realText, W / 2, y, W - 140);
+        c.strokeStyle = 'rgba(192,57,43,0.85)';
+        c.lineWidth = 3;
+        c.beginPath();
+        c.moveTo(W / 2 - realW / 2, y - 9);
+        c.lineTo(W / 2 + realW / 2, y - 9);
+        c.stroke();
+        y += 46;
+        c.fillStyle = '#f5c842';
+        c.font = '700 28px Inter, sans-serif';
+        c.fillText('→  ' + String(r.alternate || ''), W / 2, y, W - 120);
+        y += 76;
+      });
+    } else if (d.dossier && d.dossier.retro) {
+      c.fillStyle = '#e8e8f0';
+      c.font = 'italic 700 34px "Playfair Display", serif';
+      wrapCanvasText(c, '“' + d.dossier.retro + '”', W - 220).slice(0, 4)
+        .forEach(ln => { c.fillText(ln, W / 2, y); y += 50; });
+    }
+
+    // footer
+    c.fillStyle = '#f5c842';
+    c.fillRect(W / 2 - 210, H - 150, 420, 4);
+    c.fillStyle = '#f0f0f8';
+    c.font = '700 32px "Playfair Display", serif';
+    c.fillText('CRICKET BUTTERFLY EFFECT', W / 2, H - 96);
+    c.fillStyle = '#8c8caf';
+    c.font = '22px Inter, sans-serif';
+    c.fillText('cricket-bf.vercel.app — change one moment', W / 2, H - 54);
+
+    cv.toBlob(async blob => {
+      if (!blob) { showToast('⚠ Could not create the card'); return; }
+      const file = new File([blob], 'butterfly-moment.png', { type: 'image/png' });
+      // Phones: straight into the share sheet with the image attached
+      if (navigator.canShare && navigator.canShare({ files: [file] }) && matchMedia('(pointer: coarse)').matches) {
+        try {
+          await navigator.share({ files: [file], title: 'Cricket Butterfly Effect' });
+          return;
+        } catch (e) { if (e.name === 'AbortError') return; /* else fall through */ }
+      }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'butterfly-moment.png';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      showToast('🖼 Card downloaded — post it!');
+    }, 'image/png');
+  } catch (err) {
+    console.error('card render failed:', err);
+    showToast('⚠ Card failed — try again');
+  }
+}
+
 // ── Share (copies a real link to this story) ─────────
 function showToast(msg) {
   const toast = document.getElementById('toast');
@@ -905,6 +1040,7 @@ function setupNav() {
   });
   document.getElementById('btn-generate-custom').addEventListener('click', generateCustomStory);
   document.getElementById('share-btn').addEventListener('click', share);
+  document.getElementById('card-btn')?.addEventListener('click', saveStoryCard);
 }
 
 // ── Init ──────────────────────────────────────────────

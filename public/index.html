@@ -16,6 +16,10 @@
   <meta name="twitter:description" content="Change one moment. Watch cricket history unravel. The what-if simulator for cricket's legendary matches." />
   <meta name="twitter:image" content="https://cricket-bf.vercel.app/og-image.png" />
 
+  <!-- Vercel Web Analytics (enable in Vercel dashboard: Project → Analytics) -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -235,7 +239,10 @@
       <div class="story-topbar">
         <button class="back-btn" id="story-back-btn">← Try Another</button>
         <div class="story-badge">🦋 Alternate Timeline</div>
-        <button class="share-btn" id="share-btn">Share ↗</button>
+        <div class="topbar-actions">
+          <button class="share-btn" id="card-btn">🖼 Card</button>
+          <button class="share-btn" id="share-btn">Share ↗</button>
+        </div>
       </div>
 
       <div class="story-match-pill" id="story-match-pill"></div>

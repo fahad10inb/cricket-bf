@@ -1037,6 +1037,7 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
 @media (max-width: 640px) {
   .matches-grid { grid-template-columns: 1fr; padding: 1rem; }
   .story-topbar { padding: 1rem 0; gap: 6px; }
+  .story-topbar .story-badge { display: none; } /* actions need the room on phones */
   .story-badge { font-size: 0.62rem; letter-spacing: 0.05em; padding: 4px 8px; white-space: nowrap; }
   .back-btn, .share-btn { font-size: 0.75rem; padding: 0.4rem 0.7rem; white-space: nowrap; }
   .dsr-comm-text { font-size: 1.05rem; }
@@ -1601,6 +1602,8 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
   font-size: 0.75rem;
   color: var(--gold);
 }
+
+.topbar-actions { display: flex; gap: 6px; }
 
 /* Typewriter cursor */
 .cursor {
