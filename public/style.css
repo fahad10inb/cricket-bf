@@ -1449,7 +1449,7 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
   box-shadow: 0 0 10px rgba(231,76,60,0.8);
   opacity: 0;
 }
-.universe-overlay.show .ue-cursor { animation: ueSweep 1.9s linear 0.2s forwards; }
+.universe-overlay.show .ue-cursor { animation: ueSweep 2.6s linear 0.2s forwards; }
 @keyframes ueSweep {
   0%   { opacity: 1; left: 2%; }
   100% { opacity: 1; left: 98%; }
