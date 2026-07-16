@@ -363,7 +363,7 @@ async function callCerebras(prompt) {
     // appears — give them headroom and keep the thinking short.
     max_tokens: model.startsWith('gpt-oss') ? 4096 : 1400
   };
-  if (model.startsWith('gpt-oss')) body.reasoning_effort = 'low';
+  if (model.startsWith('gpt-oss')) body.reasoning_effort = 'medium';
 
   const res = await fetch('https://api.cerebras.ai/v1/chat/completions', {
     method: 'POST',
@@ -432,7 +432,7 @@ OUTPUT: Respond with ONLY a valid JSON object (no markdown fences, no commentary
   ],
   "retro": "one killer sentence looking back decades later, like a documentary narrator's closing line",
   "headline": "ALL-CAPS alternate-universe newspaper headline, max 90 chars",
-  "factCheck": {"verdict": "accurate OR inaccurate OR fictional — judge whether WHAT REALLY HAPPENED above matches real cricket history", "note": "empty if accurate; if inaccurate, one short line stating what actually happened; if fictional, empty"},
+  "factCheck": {"verdict": "accurate OR inaccurate OR fictional", "note": "see rules"},
   "ripples": ["4 one-line consequences cascading outward: near-term, career, legacy, cricket-wide"],
   "records": [
     {"label": "a real record/stat this twist changes", "reality": "the TRUE real-world value", "alternate": "the value in this alternate universe"},
@@ -441,6 +441,11 @@ OUTPUT: Respond with ONLY a valid JSON object (no markdown fences, no commentary
   ],
   "paragraphs": ["para 1", "para 2", "para 3", "para 4", "para 5"]
 }
+
+FACT-CHECK RULES (for the factCheck field ONLY — judge the WHAT REALLY HAPPENED text, never the twist):
+- 'accurate': the text matches real cricket history in substance. Minor wording or missing detail is still accurate. note stays empty.
+- 'inaccurate': the text CONTRADICTS real events (wrong winner, wrong score, wrong player). note = one short line stating the real version. If your note would essentially AGREE with the user's text, the verdict must be 'accurate' instead.
+- 'fictional': the match or scenario never took place at all. note stays empty.
 
 PARAGRAPH RULES:
 - Exactly 5 paragraphs: (1) scene/tension before the moment, (2) the moment unfolding differently in cinematic detail, (3) immediate aftermath, (4) the cascade over weeks/months, (5) lasting legacy.

@@ -407,8 +407,9 @@ async function revealStory() {
 }
 
 // ── Dossier rendering (artifacts from the alt universe) ──
+// No badge for 'accurate' — a wrong green check would endorse misinformation,
+// so we only ever flag problems (best-effort) or celebrate fiction.
 const FACT_CHECK_PILLS = {
-  accurate:   { cls: 'ok',   text: '✅ Reality verified' },
   inaccurate: { cls: 'warn', text: '⚠️ Reality check' },
   fictional:  { cls: 'fic',  text: '🌀 Fully fictional scenario — pure multiverse' }
 };
