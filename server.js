@@ -460,7 +460,7 @@ Return ONLY the JSON object.`;
 
 // ── Start ────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`\n🏏 Cricket Butterfly Effect`);
+  console.log(`\n🏏 Flipside`);
   console.log(`🚀 Server running at http://localhost:${PORT}`);
   console.log(`⚡ Groq:   ${process.env.GROQ_API_KEY ? '✓ configured' : '✗ not set'}`);
   console.log(`🔵 Gemini: ${process.env.GEMINI_API_KEY ? '✓ configured' : '✗ not set'}`);

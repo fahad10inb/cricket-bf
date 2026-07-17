@@ -936,7 +936,7 @@ async function saveStoryCard() {
     c.fillRect(W / 2 - 210, H - 150, 420, 4);
     c.fillStyle = '#f0f0f8';
     c.font = '700 32px "Playfair Display", serif';
-    c.fillText('CRICKET BUTTERFLY EFFECT', W / 2, H - 96);
+    c.fillText('FLIPSIDE', W / 2, H - 96);
     c.fillStyle = '#8c8caf';
     c.font = '22px Inter, sans-serif';
     c.fillText('cricket-bf.vercel.app — change one moment', W / 2, H - 54);
@@ -947,7 +947,7 @@ async function saveStoryCard() {
       // Phones: straight into the share sheet with the image attached
       if (navigator.canShare && navigator.canShare({ files: [file] }) && matchMedia('(pointer: coarse)').matches) {
         try {
-          await navigator.share({ files: [file], title: 'Cricket Butterfly Effect' });
+          await navigator.share({ files: [file], title: 'Flipside' });
           return;
         } catch (e) { if (e.name === 'AbortError') return; /* else fall through */ }
       }
@@ -1004,7 +1004,7 @@ async function share() {
   if (navigator.share && matchMedia('(pointer: coarse)').matches) {
     try {
       await navigator.share({
-        title: 'Cricket Butterfly Effect',
+        title: 'Flipside',
         text: `🦋 "${headline}" — In another universe...`,
         url
       });
@@ -1014,7 +1014,7 @@ async function share() {
       // fall through to clipboard
     }
   }
-  const text = `🦋 Cricket Butterfly Effect\n"${headline}"\n\n${url}\n\n#CricketButterflyEffect #WhatIf #Cricket`;
+  const text = `🦋 Flipside\n"${headline}"\n\n${url}\n\n#FlipsideCricket #WhatIf #Cricket`;
   try {
     await navigator.clipboard.writeText(text);
     showToast('🔗 Link copied — paste it anywhere!');

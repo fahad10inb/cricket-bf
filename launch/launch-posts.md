@@ -1,4 +1,4 @@
-# 🦋 Cricket Butterfly Effect — Launch Posts
+# 🦋 Flipside — Launch Posts
 
 > Replace `https://cricket-bf.vercel.app` everywhere once deployed. Attach the images noted per post.
 > Images live in this folder: `ig-card-gibbs.png`, `ig-card-dhoni.png` (+ `../public/og-image.png` used automatically by link previews).
@@ -37,7 +37,7 @@ What if Dhoni never promoted himself in the 2011 World Cup final?
 
 I kept having these arguments with friends, so I built an app that settles them — by showing you the other universe.
 
-🦋 Cricket Butterfly Effect: pick one legendary moment in cricket history, change it, and watch the timeline unravel — the live commentary at the exact second history forks, the rewritten record books, fan reactions from the universe that never happened, and the full alternate story.
+🦋 Flipside: pick one legendary moment in cricket history, change it, and watch the timeline unravel — the live commentary at the exact second history forks, the rewritten record books, fan reactions from the universe that never happened, and the full alternate story.
 
 A library of legendary matches from Bodyline 1933 to today — internationals and IPL classics. Or create your own what-if and AI writes it in seconds.
 

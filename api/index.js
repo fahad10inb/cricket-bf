@@ -310,7 +310,7 @@ app.get('/s/:id', async (req, res) => {
   } catch (_) {}
   const escH = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const origin   = `https://${req.headers.host}`;
-  const headline = s ? s.headline : 'Cricket Butterfly Effect — Rewrite History';
+  const headline = s ? s.headline : 'Flipside — Rewrite Cricket History';
   const desc     = s ? `${s.matchPill} — In another universe...` : 'Change one moment. Watch cricket history unravel.';
   const target   = `${origin}/#/shared/${encodeURIComponent(id)}`;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
