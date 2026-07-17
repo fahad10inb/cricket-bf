@@ -1480,9 +1480,13 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
   .back-btn, .share-btn { font-size: 0.75rem; padding: 0.4rem 0.7rem; white-space: nowrap; }
   .dsr-comm-text { font-size: 1.05rem; }
   .dsr-socials { grid-template-columns: 1fr; }
-  .fork-visual { grid-template-columns: 1fr; }
-  .fork-branch { flex-direction: row; }
-  .branch-line { width: 30px; height: 2px; }
+  /* phones: each universe stacks — pill centered above a full-width card */
+  .fork-visual { grid-template-columns: 1fr; gap: 1.4rem; }
+  .fork-branch { flex-direction: column; align-items: center; gap: 0.55rem; }
+  .branch-line { width: 2px; height: 14px; }
+  .branch-card { width: 100%; }
+  .fork-center::before { height: 9vh; }
+  .twist-wrap { padding: 1.2rem 1.2rem 2rem; }
   .verdict-row { grid-template-columns: 1fr; }
   .hero-btns { flex-direction: column; align-items: center; }
   .custom-form-card { padding: 1.5rem; }
