@@ -942,7 +942,7 @@ async function saveStoryCard() {
     c.fillText('FLIPSIDE', W / 2, H - 96);
     c.fillStyle = '#8c8caf';
     c.font = '22px Inter, sans-serif';
-    c.fillText('cricket-bf.vercel.app — change one moment', W / 2, H - 54);
+    c.fillText(location.host + ' — change one moment', W / 2, H - 54);
 
     cv.toBlob(async blob => {
       if (!blob) { showToast('⚠ Could not create the card'); return; }
