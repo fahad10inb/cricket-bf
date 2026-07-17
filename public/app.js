@@ -934,11 +934,14 @@ async function saveStoryCard() {
         .forEach(ln => { c.fillText(ln, W / 2, y); y += 50; });
     }
 
-    // footer — just a quiet wordmark, nothing else
+    // footer — the Flipside Cricket wordmark, nothing else
     c.fillStyle = '#f5c842';
-    c.fillRect(W / 2 - 110, H - 112, 220, 3);
-    c.font = '700 25px "Space Mono", monospace';
-    c.fillText('F L I P S I D E   C R I C K E T', W / 2, H - 62);
+    c.fillRect(W / 2 - 90, H - 132, 180, 3);
+    c.font = 'italic 700 42px "Playfair Display", serif';
+    c.fillText('Flipside', W / 2, H - 80);
+    c.fillStyle = '#8c8caf';
+    c.font = '700 19px "Space Mono", monospace';
+    c.fillText('C R I C K E T', W / 2, H - 46);
 
     cv.toBlob(async blob => {
       if (!blob) { showToast('⚠ Could not create the card'); return; }
