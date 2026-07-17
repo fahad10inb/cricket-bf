@@ -45,7 +45,8 @@ body {
   position: relative;
   z-index: 1;
 }
-.screen.active { display: block; }
+.screen.active { display: block; animation: screenIn 0.32s ease; }
+@keyframes screenIn { from { opacity: 0; transform: translateY(10px); } }
 
 /* ══════════════════════════════════════════
    HERO
@@ -59,7 +60,7 @@ body {
   text-align: center;
   overflow: hidden;
 }
-#screen-hero.active { display: flex; }
+#screen-hero.active { display: flex; animation: screenIn 0.32s ease; }
 
 .hero-content {
   position: relative;
@@ -167,6 +168,22 @@ body {
   padding: 1rem 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+/* a slow golden sheen sweeps the card — the eye's invitation */
+.daily-card::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -60%;
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(255,235,170,0.13), transparent);
+  animation: cardSheen 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes cardSheen {
+  0%, 55% { left: -60%; }
+  80%, 100% { left: 110%; }
 }
 .daily-card:hover {
   transform: translateY(-3px);
@@ -1735,6 +1752,37 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
   transition: border-color 0.2s, color 0.2s;
 }
 .dsr-expand:hover { border-color: var(--gold); color: var(--text); }
+
+/* dossier sections drift in as you scroll to them */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.dsr-social-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+.dsr-social-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+
+/* press feedback everywhere */
+.btn-primary:active, .btn-outline:active, .btn-mini:active,
+.verdict-btn:active, .share-btn:active, .back-btn:active,
+.btn-outline-sm:active, .dsr-expand:active { transform: scale(0.97); }
+
+/* the loop never ends: quick re-roll from any story */
+.fab-next {
+  position: fixed;
+  bottom: 1.4rem; right: 1.4rem;
+  z-index: 50;
+  background: rgba(10,10,15,0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(245,200,66,0.4);
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transition: all 0.2s ease;
+}
+.fab-next:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(245,200,66,0.2); border-color: var(--gold); }
 .dsr-fullstory.hidden { display: none; }
 .dsr-fullstory { animation: fadeSlideIn 0.5s ease; }
 @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }

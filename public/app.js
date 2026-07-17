@@ -515,6 +515,7 @@ async function revealStory() {
       setTimeout(() => {
         const prose = document.getElementById('story-prose');
         renderDossierBottom(prose, data.dossier, storyArr);
+        revealOnScroll(prose);
         prose.style.opacity = '0';
         prose.style.transform = 'translateY(20px)';
         prose.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -522,6 +523,30 @@ async function revealStory() {
       }, (data.ripples||[]).length * 90 + 400);
     });
   }, 200);
+}
+
+// ── Scroll-reveal: dossier sections drift in as you reach them ──
+function revealOnScroll(container) {
+  if (!('IntersectionObserver' in window)) return;
+  const els = container.querySelectorAll('.dsr-records, .dsr-social-card, .dsr-retro, .dsr-expand');
+  if (!els.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+}
+
+// ── Animated percentage count-up on votes ─────────────
+function animatePct(el, to) {
+  const from = parseInt(el.textContent, 10) || 0;
+  const t0 = performance.now(), dur = 600;
+  (function step(t) {
+    const p = Math.min(1, (t - t0) / dur);
+    el.textContent = Math.round(from + (to - from) * p) + '%';
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
 }
 
 // ── Dossier rendering (artifacts from the alt universe) ──
@@ -634,8 +659,11 @@ function templateStory({ t1, t2, tournament, realMoment, twist, ripples }) {
 function renderVotes(momentId) {
   const v = localVotes[momentId] || { agree:0, disagree:0 };
   const total = (v.agree||0) + (v.disagree||0);
-  document.getElementById('pct-agree').textContent    = total ? (v.pctAgree    ?? Math.round(v.agree/total*100))+'%'    : '—';
-  document.getElementById('pct-disagree').textContent = total ? (v.pctDisagree ?? Math.round(v.disagree/total*100))+'%' : '—';
+  const aEl = document.getElementById('pct-agree');
+  const dEl = document.getElementById('pct-disagree');
+  if (!total) { aEl.textContent = '—'; dEl.textContent = '—'; return; }
+  animatePct(aEl, v.pctAgree    ?? Math.round(v.agree/total*100));
+  animatePct(dEl, v.pctDisagree ?? Math.round(v.disagree/total*100));
 }
 
 function setupVoting() {
@@ -1106,6 +1134,7 @@ function setupNav() {
   document.getElementById('btn-generate-custom').addEventListener('click', generateCustomStory);
   document.getElementById('share-btn').addEventListener('click', share);
   document.getElementById('card-btn')?.addEventListener('click', saveStoryCard);
+  document.getElementById('fab-next')?.addEventListener('click', surpriseMe);
 }
 
 // ── Init ──────────────────────────────────────────────
