@@ -379,12 +379,12 @@ function universeTransition() {
     ov.classList.remove('verdict');
     ov.classList.toggle('fastcut', fast);
     ov.classList.add('show');
-    setTimeout(() => ov.classList.add('verdict'), fast ? 850 : 3100);
+    setTimeout(() => ov.classList.add('verdict'), fast ? 850 : 2900);
     setTimeout(() => {
       ov.classList.remove('show');
       setTimeout(() => ov.classList.remove('verdict', 'fastcut'), 300);
       resolve();
-    }, fast ? 2050 : 4800);
+    }, fast ? 2050 : 4400);
   });
 }
 
