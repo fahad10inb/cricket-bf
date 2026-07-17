@@ -1004,7 +1004,7 @@ async function share() {
     try {
       await navigator.share({
         title: 'Flipside',
-        text: `🦋 "${headline}" — In another universe...`,
+        text: `"${headline}" — cricket history, flipped.`,
         url
       });
       return;
@@ -1013,7 +1013,7 @@ async function share() {
       // fall through to clipboard
     }
   }
-  const text = `🦋 Flipside\n"${headline}"\n\n${url}\n\n#FlipsideCricket #WhatIf #Cricket`;
+  const text = `"${headline}"\n\nCricket history, flipped — see the whole alternate timeline:\n${url}`;
   try {
     await navigator.clipboard.writeText(text);
     showToast('🔗 Link copied — paste it anywhere!');

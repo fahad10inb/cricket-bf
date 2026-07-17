@@ -317,11 +317,11 @@ app.get('/s/:id', async (req, res) => {
   res.send(`<!DOCTYPE html><html><head><meta charset="utf-8">
 <title>${escH(headline)}</title>
 <meta property="og:type" content="article">
-<meta property="og:title" content="${escH(headline)} 🦋">
+<meta property="og:title" content="${escH(headline)}">
 <meta property="og:description" content="${escH(desc)}">
 <meta property="og:image" content="${origin}/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${escH(headline)} 🦋">
+<meta name="twitter:title" content="${escH(headline)}">
 <meta name="twitter:image" content="${origin}/og-image.png">
 <meta http-equiv="refresh" content="0;url=${target}">
 </head><body><script>location.replace(${JSON.stringify(target)})</script></body></html>`);
