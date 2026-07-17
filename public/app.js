@@ -395,10 +395,10 @@ async function revealStory() {
     console.error('No match/moment selected'); return;
   }
 
-  // Cricket-themed crossing for instant reveals; AI generations
-  // get the dedicated loading overlay instead (never both)
+  // AI generations get the loading overlay; instant reveals get the
+  // Timeline Review — but only AFTER the story screen is mounted, so
+  // the fade never exposes the previous screen (see below)
   const willGenerate = isCustom && customData && customData.story === null;
-  if (!willGenerate) await universeTransition();
 
   if (isCustom && customData && customData.story === null) {
     showLoading();
@@ -505,6 +505,10 @@ async function revealStory() {
 
   buildMoreCards(data.momentId);
   showScreen('screen-story');
+
+  // Story screen is mounted (dark, empty) — NOW the review plays over it,
+  // so its fade always reveals the story, never the previous screen
+  if (!willGenerate) await universeTransition();
 
   // Animate headline → live call → ripples → reactions/story (snappy —
   // shared-link visitors on phones won't wait for slow reveals)
