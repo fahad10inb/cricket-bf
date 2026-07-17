@@ -934,15 +934,11 @@ async function saveStoryCard() {
         .forEach(ln => { c.fillText(ln, W / 2, y); y += 50; });
     }
 
-    // footer
+    // footer — just a quiet wordmark, nothing else
     c.fillStyle = '#f5c842';
-    c.fillRect(W / 2 - 210, H - 150, 420, 4);
-    c.fillStyle = '#f0f0f8';
-    c.font = '700 32px "Playfair Display", serif';
-    c.fillText('FLIPSIDE', W / 2, H - 96);
-    c.fillStyle = '#8c8caf';
-    c.font = '22px Inter, sans-serif';
-    c.fillText(location.host + ' — change one moment', W / 2, H - 54);
+    c.fillRect(W / 2 - 110, H - 112, 220, 3);
+    c.font = '700 25px "Space Mono", monospace';
+    c.fillText('F L I P S I D E   C R I C K E T', W / 2, H - 62);
 
     cv.toBlob(async blob => {
       if (!blob) { showToast('⚠ Could not create the card'); return; }
