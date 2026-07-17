@@ -55,14 +55,6 @@ for (let i=0;i<120;i++) particles.push(mkParticle());
 // ── Check server health on load ───────────────────────
 async function checkHealth() {
   try {
-    const res  = await fetch('/api/health');
-    const data = await res.json();
-    const hasAI = !!(data.cerebras || data.groq || data.gemini);
-    const badge = document.getElementById('server-status');
-    if (badge) {
-      badge.textContent = hasAI ? '✨ AI Stories Ready' : '🦋 Template Stories Mode';
-      badge.className   = 'server-badge ' + (hasAI ? 'ready' : 'warn');
-    }
     // Load all votes from server
     const vRes = await fetch('/api/votes-all');
     const vData = await vRes.json();
