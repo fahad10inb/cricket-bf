@@ -112,6 +112,29 @@ body {
   50%      { filter: drop-shadow(0 0 55px rgba(245,200,66,0.6)); }
 }
 
+/* ── Load-in choreography: the page arrives, element by element,
+   in reading order — under 1s total, content never blocked ── */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-eyebrow    { animation: introFade 0.5s ease 0.05s both; }
+  .hero-title em   { animation: riseIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both; }
+  .hero-title span {
+    animation:
+      riseIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.22s both,
+      ifBreathe 4.5s ease-in-out 0.8s infinite;
+  }
+  .hero-sub        { animation: introFade 0.5s ease 0.34s both; }
+  .daily-card      { animation: riseIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.44s both; }
+  .hero-btns       { animation: riseIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.54s both; }
+  .hero-btns-mini  { animation: introFade 0.5s ease 0.64s both; }
+  .hero-ticker     { animation: introFade 0.6s ease 0.72s both; }
+  .hero-ghosts     { animation: introFade 1.6s ease 0.85s both; }
+}
+@keyframes riseIn { from { opacity: 0; transform: translateY(16px); } }
+
+/* the daily card's arrow leans in when you hover */
+.daily-cta { transition: transform 0.25s ease; }
+.daily-card:hover .daily-cta { transform: translateX(4px); }
+
 .hero-sub {
   font-size: 1.2rem;
   color: var(--muted);
