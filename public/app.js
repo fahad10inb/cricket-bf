@@ -217,7 +217,7 @@ function setupDailyCard() {
 function surpriseMe() {
   const match  = MATCHES[Math.floor(Math.random() * MATCHES.length)];
   const moment = match.moments[Math.floor(Math.random() * match.moments.length)];
-  playTossThen(() => navigate('#/twist/' + moment.id));
+  playTossThen(() => { arrivedViaToss = true; navigate('#/twist/' + moment.id); });
 }
 
 // ── Match → Moments ───────────────────────────────────
@@ -359,21 +359,32 @@ function buildUeWave() {
   }
 }
 
+let arrivedViaToss = false; // the coin already deliberated — keep the review short
+
 function universeTransition() {
   return new Promise(resolve => {
     const ov = document.getElementById('universe-overlay');
     if (!ov) return resolve();
     buildUeWave();
+    // Full drama for your first reviews; fast cut after that (and always
+    // after a coin toss) so binge-reading never feels repetitive.
+    let seen = 0;
+    try { seen = parseInt(sessionStorage.getItem('reviewsSeen') || '0', 10); } catch (_) {}
+    const fast = arrivedViaToss || seen >= 2;
+    arrivedViaToss = false;
+    try { sessionStorage.setItem('reviewsSeen', String(seen + 1)); } catch (_) {}
+
     document.getElementById('uni-line').textContent =
       UNI_LINES[Math.floor(Math.random() * UNI_LINES.length)];
     ov.classList.remove('verdict');
+    ov.classList.toggle('fastcut', fast);
     ov.classList.add('show');
-    setTimeout(() => ov.classList.add('verdict'), 3100);      // stamp: OVERTURNED
+    setTimeout(() => ov.classList.add('verdict'), fast ? 850 : 3100);
     setTimeout(() => {
       ov.classList.remove('show');
-      setTimeout(() => ov.classList.remove('verdict'), 300);   // reset after fade
+      setTimeout(() => ov.classList.remove('verdict', 'fastcut'), 300);
       resolve();
-    }, 4800);
+    }, fast ? 2050 : 4800);
   });
 }
 
@@ -718,7 +729,7 @@ function buildDebates() {
           <span class="debate-opt-pct"></span>
           <span class="debate-opt-bar"><span class="debate-opt-fill"></span></span>
         </button>
-        <div class="debate-vs">VS</div>
+        <div class="debate-vs"><span class="mini-coin"></span><span>VS</span></div>
         <button class="debate-opt" data-side="disagree">
           <span class="debate-opt-emoji">${d.optionB.emoji}</span>
           <span class="debate-opt-label">${esc(d.optionB.label)}</span>
