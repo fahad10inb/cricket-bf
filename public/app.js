@@ -896,7 +896,19 @@ async function saveStoryCard() {
     c.fillStyle = '#8c8caf';
     c.font = '23px "Space Mono", monospace';
     c.fillText(d.matchPill || '', W / 2, y + 12);
-    y += 66;
+    y += 60;
+
+    // commentary pull-quote — the live call, the one line that adds feeling
+    const commentary = d.dossier && d.dossier.commentary ? d.dossier.commentary : '';
+    if (commentary) {
+      c.fillStyle = '#e8e8f0';
+      c.font = 'italic 26px "Playfair Display", serif';
+      let qLines = wrapCanvasText(c, '"' + commentary + '"', W - 200);
+      if (qLines.length > 2) { qLines = qLines.slice(0, 2); qLines[1] = qLines[1].replace(/[.,!?"]*$/, '') + '…"'; }
+      y += 14;
+      qLines.forEach(ln => { c.fillText(ln, W / 2, y); y += 38; });
+      y += 20;
+    }
 
     // divider
     c.fillStyle = '#f5c842';
